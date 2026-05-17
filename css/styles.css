@@ -11327,3 +11327,35 @@ section#contact form#contactForm :-ms-input-placeholder {
 
    opacity: .85; /* chat massively rec */
 }
+
+.instagram-btn {
+  background: linear-gradient(
+    45deg,
+    #f58529,
+    #dd2a7b,
+    #8134af,
+    #515bd4
+  );
+  color: white;
+  border: none;
+    transition: transform .2s, box-shadow .2s;
+} 
+ 
+.instagram-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(221,42,123,.25);
+}
+
+.facebook-btn {
+  background: #1877F2 !important; /* Facebook blue */
+  color: #fff   !important;
+  border: none      !important;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.facebook-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(24,119,242,.25);
+    background: #145dbf !important; /* 살짝 어두운 Facebook blue */
+  color: #fff !important;
+}

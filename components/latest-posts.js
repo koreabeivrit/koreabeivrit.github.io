@@ -15,15 +15,18 @@ class LatestPosts extends HTMLElement {
         .bp-wrap{
           font-family:'DM Sans',sans-serif;
           padding:48px 0;
-        }
+  direction: ltr; /* 전체는 고정 */
+}
+        
 
-        .bp-header{
-          display:flex;
-          align-items:baseline;
-          justify-content:space-between;
+.bp-header{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
           margin-bottom:36px;
           padding-bottom:14px;
           border-bottom:1.5px solid #1a1612;
+            direction: rtl; /* 여기만 RTL */
         }
 
         .bp-header h2{
@@ -32,9 +35,12 @@ class LatestPosts extends HTMLElement {
           font-weight:400;
           color:#1a1612;
           margin:0;
+            direction: rtl;
+  text-align: right;
         }
 
         .bp-header a{
+          margin-left: auto;
           font-size:12px;
           font-weight:600;
           letter-spacing:.1em;
@@ -50,12 +56,18 @@ class LatestPosts extends HTMLElement {
           opacity:.4;
         }
 
-        .bp-grid{
-          display:grid;
-          grid-template-columns:repeat(3,1fr);
-          gap:24px;
-        }
-
+.bp-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  direction: ltr;  /* grid는 반드시 ltr 유지 */
+  justify-items: end;
+}
+.bp-grid:has(.bp-card:only-child){
+  grid-template-columns: 1fr;
+  justify-items: end;
+}
+  
         @media (max-width:860px){
           .bp-grid{
             grid-template-columns:repeat(2,1fr);
@@ -93,6 +105,7 @@ class LatestPosts extends HTMLElement {
 .bp-card-link{
   display:flex;
   flex-direction:column;
+    direction: rtl; /* 카드 내부만 RTL */
   color:inherit;
   text-decoration:none;
   height:100%;
@@ -135,6 +148,7 @@ class LatestPosts extends HTMLElement {
         .bp-body{
           padding:20px 18px 24px;
             flex:1;
+              text-align: right;
         }
 
         .bp-meta{
@@ -160,6 +174,7 @@ class LatestPosts extends HTMLElement {
           color:#777;
           line-height:1.72;
           margin:0;
+          text-align: right;
         }
 
         .bp-loading{
@@ -184,14 +199,14 @@ class LatestPosts extends HTMLElement {
       <div class="bp-wrap">
 
         <div class="bp-header">
-          <h2>Latest Posts</h2>
+<h2>פוסטים אחרונים</h2>
 
           <a
             href="https://koreabeivrit.blogspot.com"
             target="_blank"
             rel="noopener noreferrer">
 
-            See More →
+   ← לצפייה בכל הפוסטים
 
           </a>
         </div>
