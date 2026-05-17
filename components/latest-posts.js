@@ -12,9 +12,10 @@ class LatestPosts extends HTMLElement {
       <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap');
 
-        .bp-wrap{
-          font-family:'DM Sans',sans-serif;
-          padding:48px 0;
+.bp-wrap{
+    font-family:'DM Sans',sans-serif;
+    padding:48px 0; 
+  // margin-bottom:72px;
   direction: ltr; /* 전체는 고정 */
 }
         
@@ -32,16 +33,18 @@ class LatestPosts extends HTMLElement {
         .bp-header h2{
           font-family:'DM Serif Display',serif;
           font-size:28px;
-          font-weight:400;
+          font-weight:600; /*400->600*/
           color:#1a1612;
+
+  padding-inline: 20px;
           margin:0;
             direction: rtl;
   text-align: right;
         }
 
         .bp-header a{
-          margin-left: auto;
-          font-size:12px;
+          margin-right: auto;   /*이제맞는디 */
+          font-size:18px;
           font-weight:600;
           letter-spacing:.1em;
           text-transform:uppercase;
@@ -50,6 +53,8 @@ class LatestPosts extends HTMLElement {
           border-bottom:1.5px solid #1a1612;
           padding-bottom:1px;
           transition:opacity .2s;
+
+          padding-inline: 20px;
         }
 
         .bp-header a:hover{
@@ -60,8 +65,9 @@ class LatestPosts extends HTMLElement {
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:24px;
-  direction: ltr;  /* grid는 반드시 ltr 유지 */
-  justify-items: end;
+  direction: rtl;  /* grid는 반드시 ltr 유지-> claude는 rtl로하라고. */
+  justify-items: start;
+    padding-inline: 20px;
 }
 .bp-grid:has(.bp-card:only-child){
   grid-template-columns: 1fr;
@@ -80,7 +86,7 @@ class LatestPosts extends HTMLElement {
           }
         }
 
-        .bp-card{
+.bp-card{
           background:#fff;
           border:1px solid #e8e2d8;
           border-radius:4px;
@@ -91,6 +97,7 @@ class LatestPosts extends HTMLElement {
             opacity .55s ease,
             transform .55s ease,
             box-shadow .25s;
+              direction: ltr; /* ← 추가: 카드 내부는 ltr 유지 */
         }
 
         .bp-card.bp-visible{
@@ -199,14 +206,14 @@ class LatestPosts extends HTMLElement {
       <div class="bp-wrap">
 
         <div class="bp-header">
-<h2>פוסטים אחרונים</h2>
+<h2> פוסטים אחרונים </h2>
 
           <a
             href="https://koreabeivrit.blogspot.com"
             target="_blank"
             rel="noopener noreferrer">
 
-   ← לצפייה בכל הפוסטים
+ לצפייה בכל הפוסטים ←
 
           </a>
         </div>

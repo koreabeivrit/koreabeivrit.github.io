@@ -7,8 +7,10 @@ class WhatsAppWidget extends HTMLElement {
     this.innerHTML = `
       <style>
         .wa-wrap {
-          background: #1a1612;
-          padding: 64px 40px;
+          background: #0d4622;
+          //  #1a1612; 
+          padding: 20px 40px;
+          //64px 40px;
           text-align: center;
           font-family: 'DM Sans', sans-serif;
           direction: rtl;

@@ -22,6 +22,9 @@
         <script src="assets/main.js" defer></script>
         <link rel="stylesheet" href="assets/animations.css">
         <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+<script type="module" src="components/latest-posts.js"></script>
+<script type="module" src="components/faq.js"></script>
+<script type="module" src="components/wa-form.js"></script>
     </head>
 
     <body id="page-top">
@@ -44,30 +47,47 @@
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">                                        טיפולי יופי וניתוחים פלסטיים
 
-</h2>
-                    <h3 class="section-subheading">היי.  </h3>
+                    </h2>
+                    <h3 class="section-subheading">היי, אני עובדת כיום במרפאה גדולה לכירורגיה פלסטית בלב גנגנם, סיאול. במרפאה שלנו יש יותר מ־10 כירורגים פלסטיים מוסמכים, רופאי הרדמה ייעודיים ומומחי טיפוח עור מקצועיים. אנחנו מציעים מגוון רחב של טיפולים אסתטיים, כולל ניתוחי אף, עיצוב פנים, מתיחות פנים, טיפולי חזה, שאיבות שומן, טיפולי עור, וגם טכנולוגיות מתקדמות כמו טיפולי תאי גזע ותאי חמצן בלחץ.
+<br>
+המרפאה שלנו מתמקדת גם במטופלים מחו״ל, עם מתורגמנים פנימיים שמלווים את התהליך כדי להפוך אותו לנוח ופשוט יותר.
+<br>
+במהלך העבודה שלי כאן פיתחתי עניין גדול בתחום האסתטיקה והביוטי הקוריאני, ואני נהנית לעזור לישראלים שמבקרים בקוריאה להבין טוב יותר את האפשרויות הקיימות ומה אפשר לצפות מהתהליך. אני לא אשת מקצוע רפואית, אבל אשמח לשתף מידע כללי, תובנות אישיות ולעזור לכם להתמצא בצורה נוחה יותר.
+
+תרגישו חופשי לפנות אליי עם שאלות או התלבטויות — ואעשה כמיטב יכולתי לעזור ולהכווין אתכם!  </h3>
                 </div>
+</div>
+</section>
 
-<!-- chat fancy blogspot update -->
- <!DOCTYPE html>
-<html lang="EN">
-<head>
-  <meta charset="UTF-8">
-  <title>My Site</title>
-  <script
-    type="module"
-    src="/components/latest-posts.js">
-  </script>
-</head>
-<body>
+<!-- whatsapp form -->
+<section class="page-section" id="wa-form">
+    <div class="container">
+    <wa-form></wa-form>
+    </div>
+</section>
+
+
+
+<site-faq
+  title="שאלות נפוצות">
+
+  <faq-topic title="3">
+
+    <faq-item
+      q="2 "
+      a="1 ">
+    </faq-item>
+
+  </faq-topic>
+
+
+</site-faq>
+
+
 <latest-posts label="beauty"></latest-posts>
-
 <site-whatsapp></site-whatsapp>
-
-
-  <site-footer></site-footer>
+<site-footer></site-footer>
 
 </body>
 
 </html>
-
