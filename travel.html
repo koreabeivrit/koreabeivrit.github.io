@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
-        <meta name="author" content="Lena" />
+        <meta name="author" content="" />
         <title>קוריאה בעברית</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -15,27 +15,17 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!-- chat added -->
+        <script type="module" src="components/header.js"></script>
+        <script type="module" src="components/footer.js"></script>
+        <script type="module" src="components/whatsapp.js"></script>
+        <script src="assets/main.js" defer></script>
+        <link rel="stylesheet" href="assets/animations.css">
+        <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     </head>
     <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand" href="#page-top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars ms-1"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="index.html">אודות לנה</a></li>
-                        <li class="nav-item"><a class="nav-link" href="travel.html">טיולים </a></li>
-                        <li class="nav-item"><a class="nav-link" href="#beauty">טיפולי יופי וניתוחים פלסטיים</a></li>
-                        <!-- <li class="nav-item"><a class="nav-link" href="#team">Team</a></li> -->
-                        <!-- <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li> -->
-                    </ul>
-                </div>
-            </div>
-        </nav>
+           <site-header></site-header>
+
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
@@ -59,7 +49,7 @@
 
 <!-- chat fancy blogspot update -->
  <!DOCTYPE html>
-<html lang="ko">
+<html lang="EN">
 
 <head>
   <meta charset="UTF-8">
@@ -76,11 +66,6 @@
 
   <latest-posts></latest-posts>
 
-</body>
-
-</html>
-
-
                 
 
 <!-- reviews-->
@@ -95,134 +80,12 @@
 
 
 
+<site-whatsapp></site-whatsapp>
 
-<!-- =============================================
-  WhatsApp 버튼 위젯 (Hebrew)
-============================================= -->
 
-<style>
-  .wa-wrap {
-    background: #1a1612;
-    padding: 64px 40px;
-    text-align: center;
-    font-family: 'DM Sans', sans-serif;
-    direction: rtl;
-  }
+  <site-footer></site-footer>
 
-  .wa-wrap h2 {
-    font-family: 'DM Serif Display', Georgia, serif;
-    font-size: 36px;
-    font-weight: 400;
-    color: #fff;
-    letter-spacing: -.3px;
-    margin: 0 0 12px;
-  }
+</body>
 
-  .wa-wrap p {
-    font-size: 15px;
-    color: rgba(255,255,255,.55);
-    margin: 0 0 32px;
-    line-height: 1.7;
-  }
+</html>
 
-  .wa-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: #25D366;
-    color: #fff;
-    padding: 15px 34px;
-    border-radius: 3px;
-    font-size: 15px;
-    font-weight: 600;
-    text-decoration: none;
-    letter-spacing: .02em;
-    transition: transform .2s, box-shadow .2s;
-  }
-
-  .wa-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(37,211,102,.32);
-  }
-
-  .wa-btn svg { flex-shrink: 0; }
-
-  .wa-float {
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #25D366;
-    color: #fff;
-    padding: 13px 20px;
-    border-radius: 50px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    box-shadow: 0 4px 20px rgba(0,0,0,.22);
-    transition: transform .2s, box-shadow .2s;
-    direction: rtl;
-  }
-
-  .wa-float:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 28px rgba(37,211,102,.4);
-  }
-
-  .wa-float::before {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    border-radius: 50px;
-    background: #25D366;
-    opacity: .35;
-    animation: wa-pulse 2s ease-out infinite;
-  }
-
-  @keyframes wa-pulse {
-    0%   { transform: scale(1); opacity: .35; }
-    70%  { transform: scale(1.18); opacity: 0; }
-    100% { transform: scale(1.18); opacity: 0; }
-  }
-</style>
-
-<!-- 메인 섹션 -->
-<div class="wa-wrap">
-  <h2>יצירת קשר</h2>
-
-  <p>
-    להזמנות טיולים ולייעוץ לגבי המסלול,<br>
-    נשמח לענות במהירות דרך WhatsApp
-  </p>
-
-  <a
-    class="wa-btn"
-    href="https://wa.me/972547310116?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%A9%D7%90%D7%9C%D7%94%20%D7%9C%D7%92%D7%91%D7%99%20%D7%94%D7%98%D7%99%D7%95%D7%9C."
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
-    </svg>
-
-    צרו קשר ב-WhatsApp
-  </a>
-</div>
-
-<!-- 플로팅 버튼 -->
-<a
-  class="wa-float"
-  href="https://wa.me/972547310116?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%A9%D7%90%D7%9C%D7%94%20%D7%9C%D7%92%D7%91%D7%99%20%D7%94%D7%98%D7%99%D7%95%D7%9C."
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
-  </svg>
-
-  WhatsApp
-</a>
