@@ -10961,7 +10961,8 @@ header.masthead {
   background-size: cover;
 }
 header.masthead .masthead-subheading {
-   font-size: clamp(16px, 3vw, 28px);
+   font-size: clamp(12px, 3vw, 24px); 
+   /* 16, ,28-> */
   /* font-size: 1.5rem; */
   font-style: italic;
   line-height: 1.5rem;
@@ -10974,7 +10975,8 @@ header.masthead .masthead-subheading {
   z-index: 2;
 }
 header.masthead .masthead-heading {
-   font-size: clamp(38px, 8vw, 80px);
+   font-size: clamp(32px, 8vw, 80px);
+   /* 38,, */
   /* font-size: 3.25rem; */
   font-weight: 700;
   line-height: 3.25rem;
