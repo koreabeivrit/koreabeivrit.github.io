@@ -222,6 +222,8 @@ class LatestPosts extends HTMLElement {
 
     const container =
       this.querySelector('#bp-posts');
+// to get labels on a post  
+  const label = this.getAttribute('label') || '';
 
     // global callback
     window[this.callbackName] = (data) => {
@@ -350,8 +352,10 @@ container.appendChild(card);
     const script =
       document.createElement('script');
 
-    script.src =
-      `https://koreabeivrit.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=3&callback=${this.callbackName}`;
+
+  script.src = label
+    ? `https://koreabeivrit.blogspot.com/feeds/posts/default/-/${label}?alt=json-in-script&max-results=3&callback=${this.callbackName}`
+    : `https://koreabeivrit.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=3&callback=${this.callbackName}`;
 
     script.onerror = () => {
 
