@@ -308,15 +308,16 @@ const phone = this.getAttribute('phone') || '972547310116';
         </div>
 
 <div class="waf-field">
-  <label>הערות נוספות</label>
+  <label> ספרו לנו מה חשוב לכם, שאלות, חששות, טיפולים קודמים וכו׳</label>
 
-  <textarea
-    id="waf-note"
-    placeholder="ספרו לנו מה חשוב לכם, שאלות, חששות, טיפולים קודמים וכו׳"></textarea>
+<textarea
+  id="waf-note"
+  placeholder="יש לי רפיון באזור קו הלסת, אבל אני לא רוצה טיפול פולשני">
+</textarea>
 </div>
 
 <div>
-<label>אפשר גם לשלוח תמונה ב-WhatsApp לקבלת ייעוץ כללי&#128248;</label>
+<label>אפשר גם לשלוח תמונה ב-WhatsApp &#128248;</label>
 </div>
         <button class="waf-btn" id="waf-send">
           <svg viewBox="0 0 24 24" fill="currentColor">
