@@ -14,7 +14,8 @@ class LatestPosts extends HTMLElement {
 
 .bp-wrap{
     font-family:'DM Sans',sans-serif;
-    padding:48px 20px; 
+    padding: 2rem 2rem ; 
+    // 48px 20px; 패딩조절
   // margin-bottom:72px;
   direction: ltr; /* 전체는 고정 */
 }
@@ -199,7 +200,7 @@ class LatestPosts extends HTMLElement {
         .bp-summary{
           font-size:13.5px;
           color:#777;
-          line-height:1.72;
+          line-height:1.9;
           margin:0;
           text-align: right;
         }

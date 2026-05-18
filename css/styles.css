@@ -10855,7 +10855,9 @@ p {
 
 @media (min-width: 768px) {
   /* pc */
-
+  .page-section{
+    padding: 7rem 0;
+  }
   .page-section h3.section-subheading,  .page-section .section-subheading.h3 {
     font-size: 1.5rem;
     padding-inline:12px;
@@ -10886,6 +10888,9 @@ p {
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: #212529;
+
+  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,.35);
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;
@@ -11395,10 +11400,42 @@ section#contact form#contactForm :-ms-input-placeholder {
 }
 
 #wa-form.page-section {
-  padding-top: 40px;
-  padding-bottom: 60px;
+  padding-top: 1rem ;
+  padding-bottom: 1rem ;
 }
 
 body{
   background:#f5f3ef;
+}
+
+#services{
+  padding:4rem 0 3rem;
+}
+
+.beauty-intro{
+  max-width: 820px;
+  margin: 0 auto;
+
+  background: #f8f8f6;
+  border-radius: 14px;
+
+  padding: 32px;
+
+  text-align: right;
+  direction: rtl;
+
+  line-height: 2;
+  color: #444;
+
+  box-shadow:
+    0 8px 30px rgba(0,0,0,.04);
+}
+
+.beauty-intro p{
+  margin-bottom: 1.4rem;
+  font-size: 1.05rem;
+}
+
+.beauty-intro p:last-child{
+  margin-bottom: 0;
 }

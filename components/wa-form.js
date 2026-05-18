@@ -13,7 +13,7 @@ const phone = this.getAttribute('phone') || '972547310116';
           font-family: 'DM Sans', sans-serif;
           direction: rtl;
             background: #f6f6f4;   /* 전체 은은한 회색 */
-  padding: 40px 24px;    /* 기존 48px 0 보다 줄임 */
+  padding: 24px 24px;    /* 기존 48px 0 보다 줄임. #wa-form.page-section 확인할것 */
   border-radius: 8px;
         }
 
@@ -287,7 +287,7 @@ const phone = this.getAttribute('phone') || '972547310116';
 
         <div class="waf-field">
           <label>תחומי עניין</label>
-          <p class="waf-note">(אם אינכם בטוחים, שליחת תמונה יכולה לעזור לנו לייעץ)</p>
+          <!-- <p class="waf-note">(אם אינכם בטוחים, שליחת תמונה יכולה לעזור לנו לייעץ)</p> -->
           <div class="waf-checks" id="waf-checks">
             ${[
               'עיניים', 'אף', 'קמטים',
@@ -313,6 +313,10 @@ const phone = this.getAttribute('phone') || '972547310116';
     id="waf-note"
     placeholder="ספרו לנו מה חשוב לכם, שאלות, חששות, טיפולים קודמים וכו׳">
   </textarea>
+</div>
+
+<div>
+<label>אפשר גם לשלוח תמונה ב-WhatsApp לקבלת ייעוץ כללי&#128248;</label>
 </div>
         <button class="waf-btn" id="waf-send">
           <svg viewBox="0 0 24 24" fill="currentColor">
