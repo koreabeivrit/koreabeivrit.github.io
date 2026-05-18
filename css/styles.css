@@ -11350,6 +11350,7 @@ section#contact form#contactForm :-ms-input-placeholder {
 
 
 /* chat added */
+
 .service-icon {
   display: inline-block;
   transition: transform .2s ease, opacity .2s ease; /* chat massively rec */
@@ -11396,4 +11397,8 @@ section#contact form#contactForm :-ms-input-placeholder {
 #wa-form.page-section {
   padding-top: 40px;
   padding-bottom: 60px;
+}
+
+body{
+  background:#f5f3ef;
 }
