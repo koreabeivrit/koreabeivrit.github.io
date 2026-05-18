@@ -237,7 +237,7 @@ class LatestPosts extends HTMLElement {
             target="_blank"
             rel="noopener noreferrer">
 
- לצפייה בכל הפוסטים ←
+לצפייה בעוד←
 
           </a>
         </div>
