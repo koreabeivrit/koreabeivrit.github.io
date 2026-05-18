@@ -49,18 +49,18 @@
   margin-bottom: 36px;
 }
 
-.blog-image-wrap img{
-      width: 100%;
+.blog-image-wrap img {
+  width: 100%;
   max-width: 720px;
+  height: 400px;        /* ← 원하는 높이로 조절 */
+  object-fit: cover;
+  object-position: center; /* ← top / bottom / center 중 선택 */
   border-radius: 18px;
   margin: 0 auto;
   display: block;
-  
-  /* width: 70%;             
-  border-radius: 16px;
-  object-fit: cover;
-  display: inline-block; */
 }
+
+  
 /* @media (max-width: 768px){
   .blog-image-wrap img{
     width: 95%;

@@ -15,7 +15,7 @@ class LatestPosts extends HTMLElement {
 .bp-wrap{
     font-family:'DM Sans',sans-serif;
     padding: 2rem 2rem ; 
-    // 48px 20px; 패딩조절
+    // 48px 20px; 패딩조절. 앞 section닫으면 되니 이걸 크게할필요 없음
   // margin-bottom:72px;
   direction: ltr; /* 전체는 고정 */
 }
