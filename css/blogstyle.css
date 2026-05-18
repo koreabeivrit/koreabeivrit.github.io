@@ -61,8 +61,8 @@
 }
 
   
-/* @media (max-width: 768px){
-  .blog-image-wrap img{
-    width: 95%;
+@media (max-width: 600px) {
+  .blog-image-wrap img {
+    height: 220px;
   }
-} */
+}
