@@ -50,9 +50,9 @@
 }
 
 .blog-image-wrap img {
-  width: 100%;
-  max-width: 720px;
-  height: 400px;        /* ← 원하는 높이로 조절 */
+  width: 100% !important;
+  max-width: 720px !important;
+  height: 400px !important;
   object-fit: cover;
   object-position: center; /* ← top / bottom / center 중 선택 */
   border-radius: 18px;
