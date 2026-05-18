@@ -33,7 +33,9 @@ class LatestPosts extends HTMLElement {
 
 .bp-header h2{
   font-family:'DM Serif Display',serif;
-  font-size:28px;
+  font-size: 1.5rem;
+  // 28px;
+
   font-weight:600; /*400->600*/
   color:#1a1612;
 
@@ -48,7 +50,8 @@ class LatestPosts extends HTMLElement {
 
           padding-right:20px; /*비대칭 padding 사용.모바일때문 */
           padding-left:8px;
-          font-size:18px;
+          font-size:1.2 rem;
+          // 16px;
           font-weight:600;
           letter-spacing:.1em;
           text-transform:uppercase;

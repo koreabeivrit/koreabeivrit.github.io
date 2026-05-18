@@ -26,7 +26,7 @@ class WhatsAppWidget extends HTMLElement {
         }
 
         .wa-wrap p {
-          font-size: 15px;
+          font-size: 20px;
           color: rgba(255,255,255,.55);
           margin: 0 0 32px;
           line-height: 1.7;
@@ -40,7 +40,7 @@ class WhatsAppWidget extends HTMLElement {
           color: #fff;
           padding: 15px 34px;
           border-radius: 3px;
-          font-size: 15px;
+          font-size: 20px;
           font-weight: 600;
           text-decoration: none;
           transition: transform .2s, box-shadow .2s;

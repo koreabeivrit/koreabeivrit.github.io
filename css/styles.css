@@ -11412,7 +11412,7 @@ body{
   padding:4rem 0 3rem;
 }
 
-.beauty-intro{
+.main-intro{
   max-width: 820px;
   margin: 0 auto;
 
@@ -11431,11 +11431,11 @@ body{
     0 8px 30px rgba(0,0,0,.04);
 }
 
-.beauty-intro p{
+.main-intro p{
   margin-bottom: 1.4rem;
   font-size: 1.05rem;
 }
 
-.beauty-intro p:last-child{
+.main-intro p:last-child{
   margin-bottom: 0;
 }
