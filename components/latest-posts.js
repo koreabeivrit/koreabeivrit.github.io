@@ -14,7 +14,7 @@ class LatestPosts extends HTMLElement {
 
 .bp-wrap{
     font-family:'DM Sans',sans-serif;
-    padding:48px 0; 
+    padding:48px 20px; 
   // margin-bottom:72px;
   direction: ltr; /* 전체는 고정 */
 }
@@ -30,20 +30,23 @@ class LatestPosts extends HTMLElement {
             direction: rtl; /* 여기만 RTL */
         }
 
-        .bp-header h2{
-          font-family:'DM Serif Display',serif;
-          font-size:28px;
-          font-weight:600; /*400->600*/
-          color:#1a1612;
+.bp-header h2{
+  font-family:'DM Serif Display',serif;
+  font-size:28px;
+  font-weight:600; /*400->600*/
+  color:#1a1612;
 
   padding-inline: 20px;
-          margin:0;
-            direction: rtl;
+  margin:0;
+    direction: rtl;
   text-align: right;
         }
 
-        .bp-header a{
-          margin-right: auto;   /*이제맞는디 */
+.bp-header a{
+          margin-right: auto;   
+
+          padding-right:20px; /*비대칭 padding 사용.모바일때문 */
+          padding-left:8px;
           font-size:18px;
           font-weight:600;
           letter-spacing:.1em;
@@ -54,7 +57,7 @@ class LatestPosts extends HTMLElement {
           padding-bottom:1px;
           transition:opacity .2s;
 
-          padding-inline: 20px;
+
         }
 
         .bp-header a:hover{
@@ -66,23 +69,39 @@ class LatestPosts extends HTMLElement {
   grid-template-columns:repeat(3,1fr);
   gap:24px;
   direction: rtl;  /* grid는 반드시 ltr 유지-> claude는 rtl로하라고. */
-  justify-items: start;
-    padding-inline: 20px;
+  // justify-items: start;  /* 삭제하라고.. */
+  
 }
 .bp-grid:has(.bp-card:only-child){
   grid-template-columns: 1fr;
   justify-items: end;
 }
   
-        @media (max-width:860px){
+@media (max-width:860px){
           .bp-grid{
             grid-template-columns:repeat(2,1fr);
           }
         }
 
-        @media (max-width:540px){
+@media (max-width:540px){
           .bp-grid{
             grid-template-columns:1fr;
+          }
+
+          .bp-header{
+            align-items:flex-start;
+          }
+
+          .bp-header h2{
+            padding-inline:12px;
+            font-size:22px;
+          }
+
+          .bp-header a{
+    padding-right:12px;
+    padding-left:4px;
+            font-size:13px;
+            letter-spacing:.04em;
           }
         }
 
@@ -97,7 +116,8 @@ class LatestPosts extends HTMLElement {
             opacity .55s ease,
             transform .55s ease,
             box-shadow .25s;
-              direction: ltr; /* ← 추가: 카드 내부는 ltr 유지 */
+          direction: ltr; /* ← 추가: 카드 내부는 ltr 유지 */  
+          width:100%;
         }
 
         .bp-card.bp-visible{
