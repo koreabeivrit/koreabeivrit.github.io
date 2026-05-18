@@ -143,15 +143,7 @@ class SiteHeader extends HTMLElement {
                 </a>
               </li>
 -->
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="https://koreabeivrit.blogspot.com">
-
-                  Blog
-
-                </a>
-              </li>
+             
 
             </ul>
 

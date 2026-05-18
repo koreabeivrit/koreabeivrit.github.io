@@ -306,13 +306,13 @@ const phone = this.getAttribute('phone') || '972547310116';
             `).join('')}
           </div>
         </div>
+
 <div class="waf-field">
   <label>הערות נוספות</label>
 
   <textarea
     id="waf-note"
-    placeholder="ספרו לנו מה חשוב לכם, שאלות, חששות, טיפולים קודמים וכו׳">
-  </textarea>
+    placeholder="ספרו לנו מה חשוב לכם, שאלות, חששות, טיפולים קודמים וכו׳"></textarea>
 </div>
 
 <div>

@@ -130,7 +130,8 @@ class SiteFaq extends HTMLElement {
           text-align:right;
           cursor:pointer;
 
-          font-size:16px;
+          font-size:20px;
+          // font-size:16px;
           font-weight:600;
           color:#1a1612;
         }
@@ -145,7 +146,8 @@ class SiteFaq extends HTMLElement {
           display:none;
           padding:0 26px 24px;
           color:#6d645c;
-          font-size:15px;
+          font-size:18px;
+          //  font-size:15px;
           line-height:1.9;
         }
 
