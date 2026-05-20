@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Card Generator — Korea Be'ivrit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&family=Noto+Sans+Hebrew:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
@@ -14,14 +14,7 @@
       --bg: #f5f0e8; --surface: #fff; --border: #e8e2d8;
       --text: #1a1612; --muted: #9b8c78; --radius: 6px;
     }
-    body { font-family: 
-      'DM Sans', sans-serif;  /*claude.*/
-          /* -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Arial,
-    sans-serif; */
-      background: var(--bg); color: var(--text); min-height: 100vh; padding: 40px 20px; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 40px 20px; }
     .page { max-width: 960px; margin: 0 auto; }
     header { text-align: center; margin-bottom: 40px; direction: rtl; }
     header h1 { font-family: 'DM Serif Display', serif; font-size: 32px; font-weight: 400; margin-bottom: 6px; }
@@ -55,137 +48,121 @@
     .action-row { display: flex; gap: 8px; margin-top: 20px; }
     .action-row button { flex: 1; }
     .hint { font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
-    .preview-wrap { background: #1a1612; border-radius: 0px; padding: 20px; display: flex; justify-content: center; position: sticky; top: 20px; }
-    #card { position: relative; width: 324px; height: 405px; border-radius: 0px; overflow: hidden; background: #1a1612; }
+
+    /* ── Preview wrap: 프리뷰는 시각적으로 작게 ── */
+    .preview-wrap {
+      background: #1a1612;
+      border-radius: 0px;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      position: sticky;
+      top: 20px;
+    }
+
+    /* 스케일 컨테이너: 실제 크기의 0.3배 공간만 차지 */
+    .card-scale-wrap {
+      width: 324px;   /* 1080 × 0.3 */
+      height: 405px;  /* 1350 × 0.3 */
+      position: relative;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-radius: 0px;
+    }
+
+    /* 카드 실제 DOM 크기: 1080×1350 → transform으로 시각적 축소 */
+    #card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1080px;
+      height: 1350px;
+      border-radius: 0px;
+      overflow: hidden;
+      background: #1a1612;
+      transform: scale(0.3);
+      transform-origin: top left;
+    }
+
     #card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
     #card-overlay { position: absolute; inset: 0; }
-    #card-content { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 28px 26px; direction: rtl; }
-  
-  
-      /* #card-badge {  letter-spacing: .12em; width: fit-content; */
-
+    #card-content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      padding: 93px 86px;   /* 28×3.33, 26×3.33 */
+      direction: rtl;
+    }
 
     #card-badge {
-  font-size: 10px;
-  font-weight: 600;
+      font-size: 33px;
+      font-weight: 600;
+      width: fit-content;
+      line-height: 1.65;
+      padding: 13px 40px;
+      letter-spacing: 0;
+      text-transform: none;
+      border-radius: 165px;
+      background: rgba(255,255,255,.16);
+      color: #fff;
+      border: 3px solid rgba(255,255,255,.28);
+      margin-bottom: auto;
+    }
 
-  /* direction: rtl; */
+    #card-bottom { margin-top: auto; }
 
-  /* display: inline-flex;
-  align-items: center;
-  justify-content: center; */
-  width: fit-content;
-  line-height: 1.65;
+    #card-logo {
+      font-size: 33px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 26px;
+    }
 
-   padding: 4px 12px;
-  /* padding: 5px 12px 4px; */
+    #card-title {
+      font-family: sans-serif;
+      font-size: 80px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 33px;
+      direction: rtl;
+    }
 
-  letter-spacing: 0;
-  text-transform: none;
+    #card-sub {
+      font-family: 'Noto Sans Hebrew', 'DM Sans', sans-serif;
+      font-size: 40px;
+      line-height: 1.65;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 46px;
+      display: none;
+      direction: rtl;
+    }
 
-  transform: translateY(-1px);
-
-  border-radius: 50px;
-
-  background: rgba(255,255,255,.16);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,.28);
-
-  margin-bottom: auto;
-}
-
-#card-bottom {
-  margin-top: auto;
-}
-
-#card-logo {
-  font-size: 10px;
-  font-weight: 600;
-
-  letter-spacing: .08em; /* .12 → .08 추천 */
-
-  text-transform: uppercase;
-
-  color: rgba(255,255,255,.55);
-
-  margin-bottom: 8px;
-}
-
-#card-title {
-
-  font-family:
-    sans-serif;
-
- 
-  font-size: 24px;
-
-  font-weight: 600;
-
-  line-height: 1.25;
-
-  color: #fff;
-
-  margin-bottom: 10px;
-
-  direction: rtl;
-
-  text-wrap: balance; /* modern browser 예쁘게 줄바꿈 */
-}
-
-#card-sub {
-  font-size: 12px;
-
-  line-height: 1.65;
-
-  color: rgba(255,255,255,.65);
-
-  margin-bottom: 14px;
-
-  display: none;
-
-  direction: rtl;
-}
-
-#card-cta {
-
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  direction: rtl;
-
-  line-height: 1;
-
-  gap: 6px;
-
-  padding: 8px 16px 7px;
-
-  transform: translateY(-1px);
-
-  border-radius: 50px;
-
-  font-size: 11px;
-
-  font-weight: 600;
-
-  background: rgba(255,255,255,.16);
-
-  color: #fff;
-
-  border: 1px solid rgba(255,255,255,.32);
-
-  width: fit-content;
-
-  letter-spacing: 0;
-}
+    #card-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      direction: rtl;
+      line-height: 1;
+      gap: 20px;
+      padding: 26px 53px;
+      border-radius: 165px;
+      font-size: 36px;
+      font-weight: 600;
+      background: rgba(255,255,255,.16);
+      color: #fff;
+      border: 3px solid rgba(255,255,255,.32);
+      width: fit-content;
+      letter-spacing: 0;
+    }
   </style>
 </head>
 <body>
 <div class="page">
   <header>
     <h1>Instagram Card Generator</h1>
-    <p>포스트 URL → 카드 자동 생성 → PNG 저장</p>
+    <p>가장 최신 글을 fetch → image는 직접 업로드 → PNG 저장</p>
   </header>
   <div class="layout">
     <div>
@@ -200,6 +177,7 @@
           <div class="status" id="status">URL을 붙여넣고 가져오기를 누르세요</div>
         </div>
       </div>
+
       <div class="panel" style="margin-top:16px;">
         <div class="panel-title">카드 내용</div>
         <div class="field">
@@ -210,14 +188,11 @@
           <label>한 줄 요약 (선택)</label>
           <textarea id="f-sub" placeholder="짧은 설명..." oninput="render()"></textarea>
         </div>
-     
-          <a id="open-post"
-     target="_blank"
-     style="flex:1;  ">
-    <button class="primary" style="width:100%;">
-      포스트 열기
-    </button>
-  </a>
+
+        <a id="open-post" target="_blank" style="display:block; margin-bottom:14px;">
+          <button class="primary" style="width:100%;">포스트 열기</button>
+        </a>
+
         <div class="field">
           <label>이미지</label>
           <div class="img-row">
@@ -226,7 +201,7 @@
           </div>
           <img id="img-thumb" class="img-thumb" alt="" />
         </div>
-        
+
         <div class="field">
           <label>채널명</label>
           <input type="text" id="f-logo" value="koreabeivrit@" oninput="render()" />
@@ -249,25 +224,27 @@
           </div>
         </div>
       </div>
+
       <div class="action-row">
         <button class="primary" onclick="downloadCard()">PNG 저장 (1080×1350)</button>
-        <!-- <button onclick="copyCaption()">캡션 복사</button> -->
-
       </div>
-      <p class="hint">* 이미지는 자동으로 base64 변환됩니다 (저장 시 이미지 포함)<br>* Apple 기기: 공유 시트 → 사진에 저장</p>
+      <p class="hint">* 업로드 이미지 사용 시 CORS 없이 저장됩니다<br>* Apple 기기: 공유 시트 → 사진에 저장</p>
     </div>
+
     <div>
       <div class="preview-wrap">
-        <div id="card">
-          <div id="card-bg"></div>
-          <div id="card-overlay"></div>
-          <div id="card-content">
-            <div id="card-badge">קוריאהבעברית</div>
-            <div id="card-bottom">
-              <div id="card-logo">koreabeivrit@</div>
-              <div id="card-title">제목이 여기에 표시됩니다</div>
-              <div id="card-sub"></div>
-              <div id="card-cta">קרא עוד ←</div>
+        <div class="card-scale-wrap">
+          <div id="card">
+            <div id="card-bg"></div>
+            <div id="card-overlay"></div>
+            <div id="card-content">
+              <div id="card-badge">קוריאהבעברית</div>
+              <div id="card-bottom">
+                <div id="card-logo">koreabeivrit@</div>
+                <div id="card-title">제목이 여기에 표시됩니다</div>
+                <div id="card-sub"></div>
+                <div id="card-cta">קרא עוד ←</div>
+              </div>
             </div>
           </div>
         </div>
@@ -278,7 +255,7 @@
 
 <script>
   let currentStyle = 'dark-bottom';
-  let localSrc = null; // 항상 base64 또는 null
+  let localSrc = null;
 
   const overlays = {
     'dark-bottom': 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.04) 100%)',
@@ -294,7 +271,6 @@
     render();
   }
 
-  // 파일 업로드 → base64
   function onFileUpload(input) {
     const file = input.files[0];
     if (!file) return;
@@ -308,57 +284,28 @@
     reader.readAsDataURL(file);
   }
 
-  // URL 직접 입력 → base64로 변환 시도
-  // async function onUrlInput() {
-  //   const url = document.getElementById('f-img').value.trim();
-  //   if (!url) { localSrc = null; hideThumb(); render(); return; }
-  //   localSrc = await fetchBase64(url);
-  //   if (localSrc) showThumb(localSrc);
-  //   render();
-  // }
+  function onUrlInput() {
+    localSrc = null;
+    hideThumb();
+    render();
+  }
 
   function showThumb(src) {
     const t = document.getElementById('img-thumb');
-    t.src = src;
-    t.style.display = 'block';
+    t.src = src; t.style.display = 'block';
   }
 
   function hideThumb() {
     const t = document.getElementById('img-thumb');
-    t.src = '';
-    t.style.display = 'none';
+    t.src = ''; t.style.display = 'none';
   }
 
-// async function fetchBase64(url) {
-//   try {
-//     const res = await fetch(url, { mode: 'cors' });
-
-//     if (!res.ok) throw new Error('fetch failed');
-
-//     const blob = await res.blob();
-
-//     return await new Promise((resolve, reject) => {
-//       const fr = new FileReader();
-
-//       fr.onload = () => resolve(fr.result);
-//       fr.onerror = reject;
-
-//       fr.readAsDataURL(blob);
-//     });
-
-//   } catch(e) {
-//     console.warn(e);
-//     return null;
-//   }
-// }
-
   function render() {
-    const title  = document.getElementById('f-title').value;
-    const sub    = document.getElementById('f-sub').value;
-    const imgUrl = document.getElementById('f-img').value.trim();
-    const logo   = document.getElementById('f-logo').value;
-    const badge  = document.getElementById('f-badge').value;
-    const cta    = document.getElementById('f-cta').value;
+    const title = document.getElementById('f-title').value;
+    const sub   = document.getElementById('f-sub').value;
+    const logo  = document.getElementById('f-logo').value;
+    const badge = document.getElementById('f-badge').value;
+    const cta   = document.getElementById('f-cta').value;
 
     document.getElementById('card-title').textContent = title || '제목이 여기에 표시됩니다';
     document.getElementById('card-logo').textContent  = logo;
@@ -370,10 +317,8 @@
     else { subEl.style.display = 'none'; }
 
     const bg = document.getElementById('card-bg');
-    // localSrc(base64) 우선, 없으면 원본 URL, 없으면 빈 배경
-const src = localSrc || null;  // chat이 바꾸라고,...
-    if (src) {
-      bg.style.backgroundImage = 'url(' + src + ')';
+    if (localSrc) {
+      bg.style.backgroundImage = 'url(' + localSrc + ')';
       bg.style.backgroundColor = '#111';
     } else {
       bg.style.backgroundImage = 'none';
@@ -389,14 +334,12 @@ const src = localSrc || null;  // chat이 바꾸라고,...
     el.className = 'status' + (type ? ' ' + type : '');
   }
 
-  async function fetchPost(customUrl = null) {
-const url =
-  customUrl ||
-  document.getElementById('url-in').value.trim();
+  async function fetchPost(customUrl) {
+    const url = customUrl || document.getElementById('url-in').value.trim();
     if (!url) return;
     setStatus('가져오는 중...');
     try {
-      const proxy = 'https://corsproxy.io/?' + encodeURIComponent(url); // chat: rate limit 자주 걸립니다. 그래서 Blogger 이미지는 아예 직접 fetch 가능하도록 바꾸는게 좋습니다.. 일단 놔두고
+      const proxy = 'https://corsproxy.io/?' + encodeURIComponent(url);
       const res = await fetch(proxy);
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const html = await res.text();
@@ -404,144 +347,82 @@ const url =
 
       const title = doc.querySelector('meta[property="og:title"]')?.content
                  || doc.querySelector('title')?.textContent || '';
-      // const imgUrl = doc.querySelector('meta[property="og:image"]')?.content || '';
-      const desc   = doc.querySelector('meta[property="og:description"]')?.content || '';
-document.getElementById('open-post').href = url;
+      const desc  = doc.querySelector('meta[property="og:description"]')?.content || '';
+
+      document.getElementById('open-post').href = url;
       document.getElementById('f-title').value = title;
       document.getElementById('f-sub').value   = desc.slice(0, 80) + (desc.length > 80 ? '…' : '');
-      // document.getElementById('f-img').value   = imgUrl;
-
-      // setStatus('이미지 변환 중...', '');
-
-      // // 이미지 base64 변환 (프리뷰 + 저장 모두 보장)
-      // if (imgUrl) {
-      //   localSrc = await fetchBase64(imgUrl);
-      //   if (localSrc) {
-      //     showThumb(localSrc);
-      //     setStatus('완료!', 'ok');
-      //   } else {
-      //     hideThumb();
-      //     setStatus('완료! (이미지 변환 실패 → 업로드 사용)', 'ok');
-      //   }
-      // } 
-    
-        localSrc = null;
-
-document.getElementById('f-img').value = '';
-
-setStatus('텍스트 불러오기 완료 — 이미지를 업로드하세요', 'ok');
-
-render();
-
+      document.getElementById('f-img').value   = '';
+      localSrc = null;
+      hideThumb();
+      render();
+      setStatus('텍스트 불러오기 완료 — 이미지를 업로드하세요', 'ok');
     } catch(e) {
       setStatus('오류: ' + e.message, 'err');
     }
   }
-async function downloadCard() {
-    await document.fonts.load('700 24px "Noto Sans Hebrew"');
+
+  async function downloadCard() {
+    await document.fonts.load('700 80px "Noto Sans Hebrew"');
     await document.fonts.ready;
 
     const card = document.getElementById('card');
-    
-    try {
-      // 324px * 3.33333333 = 정확히 1080px이 되도록 스케일 계산
-      const targetScale = 1080 / card.offsetWidth;
 
+    // transform 일시 제거 → html2canvas가 1080×1350 그대로 캡처
+    card.style.transform = 'none';
+
+    try {
       const canvas = await html2canvas(card, {
-        scale: targetScale,         // 정확한 배율로 크기를 키워 여백을 없앱니다.
-        useCORS: true,
-        allowTaint: false,
+        scale: 1,            // DOM 크기 그대로 (1080×1350)
+        useCORS: false,
+        allowTaint: true,
         backgroundColor: null,
         logging: false,
-        imageTimeout: 0            // 이미지 로딩 지연으로 인한 화질 저하 방지
+        width: 1080,
+        height: 1350
       });
+
+      card.style.transform = 'scale(0.3)'; // 복원
 
       canvas.toBlob(async blob => {
         const file = new File([blob], 'insta-card.png', { type: 'image/png' });
         const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
-
-        if (
-          isMobile &&
-          navigator.canShare &&
-          navigator.canShare({ files: [file] })
-        ) {
-          try {
-            await navigator.share({
-              files: [file],
-              title: 'Instagram Card'
-            });
-            return;
-          } catch(e) {}
+        if (isMobile && navigator.canShare && navigator.canShare({ files: [file] })) {
+          try { await navigator.share({ files: [file], title: 'Instagram Card' }); return; }
+          catch(e) {}
         }
-
-        // 데스크탑: 일반 다운로드
         const a = document.createElement('a');
         a.download = 'insta-card.png';
         a.href = URL.createObjectURL(blob);
         a.click();
         setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-      }, 'image/png', 1.0); // 압축 없는 최상의 화질 유지
+      }, 'image/png');
 
     } catch(e) {
+      card.style.transform = 'scale(0.3)';
       alert('저장 오류: ' + e.message);
     }
   }
-  function copyCaption() {
-    const title = document.getElementById('f-title').value || '';
-    const sub   = document.getElementById('f-sub').value || '';
-    const url =
-  customUrl ||
-  document.getElementById('url-in').value.trim();
-    const text  = title + '\n\n' + sub + '\n\n🔗 ' + url + '\n\n#קוריאה #koreabeivrit #קוריאהבעברית #סיאול #קוריאהבישראל';
-    navigator.clipboard.writeText(text)
-      .then(() => alert('캡션 복사됨!'))
-      .catch(() => prompt('직접 복사하세요:', text));
-  }
 
   async function loadLatestPost() {
-
-  try {
-
-    setStatus('최신 포스트 불러오는 중...');
-
-    const feedUrl =
-      'https://koreabeivrit.blogspot.com/feeds/posts/default?alt=json&max-results=1';
-
-    const proxy =
-      'https://corsproxy.io/?' + encodeURIComponent(feedUrl);
-
-    const res = await fetch(proxy);
-
-    if (!res.ok) {
-      throw new Error('feed fetch failed');
+    try {
+      setStatus('최신 포스트 불러오는 중...');
+      const feedUrl = 'https://koreabeivrit.blogspot.com/feeds/posts/default?alt=json&max-results=1';
+      const proxy   = 'https://corsproxy.io/?' + encodeURIComponent(feedUrl);
+      const res  = await fetch(proxy);
+      if (!res.ok) throw new Error('feed fetch failed');
+      const data = await res.json();
+      const entry = data.feed.entry?.[0];
+      if (!entry) throw new Error('no posts');
+      const postUrl = entry.link.find(l => l.rel === 'alternate').href;
+      document.getElementById('url-in').value = postUrl;
+      await fetchPost(postUrl);
+    } catch(e) {
+      console.warn(e);
+      setStatus('최신 포스트 자동 로드 실패', 'err');
     }
-
-    const data = await res.json();
-
-    const entry = data.feed.entry?.[0];
-
-    if (!entry) {
-      throw new Error('no posts');
-    }
-
-    const postUrl =
-      entry.link.find(l => l.rel === 'alternate').href;
-
-    document.getElementById('url-in').value = postUrl;
-
-    await fetchPost(postUrl);
-
-    setStatus('최신 포스트 자동 로드 완료', 'ok');
-
-  } catch(e) {
-
-    console.warn(e);
-
-    setStatus('최신 포스트 자동 로드 실패', 'err');
-
   }
 
-}
   render();
   loadLatestPost();
 </script>
