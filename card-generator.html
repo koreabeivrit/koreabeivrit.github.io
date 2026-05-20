@@ -495,49 +495,51 @@
     el.textContent = msg;
     el.className = 'status' + (type ? ' ' + type : '');
   }
+  
+function fetchPost() {
+  const url = document.getElementById('url-in').value.trim();
+  if (!url) return;
+  setStatus('가져오는 중...');
 
-  function fetchPost() {
-    const url = document.getElementById('url-in').value.trim();
-    if (!url) return;
-    setStatus('가져오는 중...');
+  window[CB] = function(data) {
+    try {
+      const entries = data.feed.entry;
+      if (!entries?.length) { setStatus('포스트를 찾을 수 없습니다', 'err'); return; }
 
-    window[CB] = function(data) {
-      try {
-        const entries = data.feed.entry;
-        if (!entries?.length) { setStatus('포스트를 찾을 수 없습니다', 'err'); return; }
-        const entry   = entries[0];
-        const title   = entry.title.$t;
-        const content = entry.content?.$t || entry.summary?.$t || '';
-        const imgMatch = content.match(/<img[^>]+src=["']([^"']+)["']/);
-        const img = imgMatch ? imgMatch[1].replace(/\/s\d+(-c)?\//, '/s1600/') : '';
-        const plain   = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-        const summary = plain.slice(0, 80).trim() + (plain.length > 80 ? '…' : '');
+      const matched = entries.find(e =>
+        e.link?.some(l => l.rel === 'alternate' && l.href === url)
+      ) || entries[0];
 
-        document.getElementById('f-title').value = title;
-        document.getElementById('f-sub').value   = summary;
-        document.getElementById('f-img').value   = img;
-        localSrc = null;
-        document.getElementById('img-thumb').style.display = 'none';
-        render();
-        setStatus('완료! CORS 오류 시 이미지를 직접 업로드하세요.', 'ok');
-      } catch(e) {
-        setStatus('오류: ' + e.message, 'err');
-      }
-      delete window[CB];
-      document.getElementById('_rss')?.remove();
-    };
+      const title   = matched.title.$t;
+      const content = matched.content?.$t || matched.summary?.$t || '';
+      const imgMatch = content.match(/<img[^>]+src=["']([^"']+)["']/);
+      const img = imgMatch ? imgMatch[1].replace(/\/s\d+(-c)?\//, '/s1600/') : '';
+      const plain   = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      const summary = plain.slice(0, 80).trim() + (plain.length > 80 ? '…' : '');
 
-    const postId  = url.match(/\/(\d{10,})/)?.[1];
-    const feedUrl = postId
-      ? `https://koreabeivrit.blogspot.com/feeds/posts/default/${postId}?alt=json-in-script&callback=${CB}`
-      : `https://koreabeivrit.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=1&callback=${CB}`;
+      document.getElementById('f-title').value = title;
+      document.getElementById('f-sub').value   = summary;
+      document.getElementById('f-img').value   = img;
+      localSrc = null;
+      document.getElementById('img-thumb').style.display = 'none';
+      render();
+      setStatus('완료! CORS 오류 시 이미지를 직접 업로드하세요.', 'ok');
+    } catch(e) {
+      setStatus('오류: ' + e.message, 'err');
+    }
+    delete window[CB];
+    document.getElementById('_rss')?.remove();
+  };
 
-    const s = document.createElement('script');
-    s.id  = '_rss';
-    s.src = feedUrl;
-    s.onerror = () => setStatus('RSS 오류 — 제목/이미지를 직접 입력해주세요', 'err');
-    document.body.appendChild(s);
-  }
+  const slug = url.split('/').pop().replace('.html', '');
+  const feedUrl = `https://koreabeivrit.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=5&q=${encodeURIComponent(slug)}&callback=${CB}`;
+
+  const s = document.createElement('script');
+  s.id  = '_rss';
+  s.src = feedUrl;
+  s.onerror = () => setStatus('RSS 오류 — 제목/이미지를 직접 입력해주세요', 'err');
+  document.body.appendChild(s);
+}
 
   async function downloadCard() {
     const card = document.getElementById('card');
