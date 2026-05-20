@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Card Generator — Korea Be'ivrit</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #f5f0e8;
+      --surface:  #fff;
+      --border:   #e8e2d8;
+      --text:     #1a1612;
+      --muted:    #9b8c78;
+      --accent:   #1a1612;
+      --radius:   6px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      direction: rtl;
+    }
+
+    header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 700px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+
+    /* ── Panel ── */
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .panel-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .field { margin-bottom: 14px; }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+      transition: border-color .18s;
+      direction: ltr;
+    }
+
+    .field input:focus,
+    .field textarea:focus { border-color: var(--text); }
+
+    .field textarea { height: 70px; resize: vertical; }
+
+    .url-row { display: flex; gap: 8px; }
+    .url-row input { flex: 1; }
+
+    .img-row { display: flex; gap: 8px; align-items: stretch; }
+    .img-row input { flex: 1; }
+
+    .status {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+      min-height: 18px;
+    }
+
+    .status.ok  { color: #2a7a4f; }
+    .status.err { color: #b94040; }
+
+    /* ── Buttons ── */
+    button {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 16px;
+      border: 1.5px solid var(--text);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--text);
+      cursor: pointer;
+      transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+
+    button:hover { background: var(--text); color: #fff; }
+    button:active { opacity: .8; }
+
+    button.primary {
+      background: var(--text);
+      color: #fff;
+    }
+
+    button.primary:hover { opacity: .85; }
+
+    .upload-btn {
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .upload-btn input[type=file] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .style-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: 50px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .pill.active {
+      border-color: var(--text);
+      background: var(--text);
+      color: #fff;
+    }
+
+    .img-thumb {
+      width: 100%;
+      height: 52px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-top: 6px;
+      display: none;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .action-row button { flex: 1; }
+
+    .hint {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    /* ── Card Preview ── */
+    .preview-wrap {
+      background: #1a1612;
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      position: sticky;
+      top: 20px;
+    }
+
+    /* actual card — 1080:1350 = 4:5 */
+    #card {
+      position: relative;
+      width: 324px;
+      height: 405px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #1a1612;
+    }
+
+    #card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+
+    #card-overlay {
+      position: absolute;
+      inset: 0;
+    }
+
+    #card-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 28px 26px;
+      direction: rtl;
+    }
+
+    #card-badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 50px;
+      width: fit-content;
+      background: rgba(255,255,255,.16);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.28);
+      margin-bottom: auto;
+    }
+
+    #card-bottom { margin-top: auto; }
+
+    #card-logo {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 8px;
+    }
+
+    #card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1.25;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    #card-sub {
+      font-size: 12px;
+      line-height: 1.65;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 14px;
+      display: none;
+    }
+
+    #card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(255,255,255,.16);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.32);
+      width: fit-content;
+      letter-spacing: .04em;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <header>
+    <h1>Instagram Card Generator</h1>
+    <p>포스트 URL → 카드 자동 생성 → PNG 저장</p>
+  </header>
+
+  <div class="layout">
+
+    <!-- Controls -->
+    <div>
+      <div class="panel">
+        <div class="panel-title">포스트 불러오기</div>
+
+        <div class="field">
+          <label>포스트 URL</label>
+          <div class="url-row">
+            <input type="text" id="url-in" placeholder="https://koreabeivrit.blogspot.com/..." />
+            <button onclick="fetchPost()">가져오기</button>
+          </div>
+          <div class="status" id="status">URL을 붙여넣고 가져오기를 누르세요</div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:16px;">
+        <div class="panel-title">카드 내용</div>
+
+        <div class="field">
+          <label>제목</label>
+          <textarea id="f-title" placeholder="포스트 제목" oninput="render()"></textarea>
+        </div>
+
+        <div class="field">
+          <label>한 줄 요약 (선택)</label>
+          <textarea id="f-sub" placeholder="짧은 설명..." oninput="render()"></textarea>
+        </div>
+
+        <div class="field">
+          <label>이미지</label>
+          <div class="img-row">
+            <input type="text" id="f-img" placeholder="URL 직접 입력..." oninput="onUrlInput()" />
+            <button class="upload-btn">
+              업로드
+              <input type="file" accept="image/*" onchange="onFileUpload(this)" />
+            </button>
+          </div>
+          <img id="img-thumb" class="img-thumb" alt="" />
+        </div>
+
+        <div class="field">
+          <label>채널명</label>
+          <input type="text" id="f-logo" value="@koreabeivrit" oninput="render()" />
+        </div>
+
+        <div class="field">
+          <label>배지 텍스트</label>
+          <input type="text" id="f-badge" value="קוריאה בעברית" oninput="render()" />
+        </div>
+
+        <div class="field">
+          <label>CTA 문구</label>
+          <input type="text" id="f-cta" value="Read more on blog →" oninput="render()" />
+        </div>
+
+        <div class="field">
+          <label>오버레이 스타일</label>
+          <div class="style-pills">
+            <button class="pill active" data-style="dark-bottom" onclick="setStyle(this)">하단 어둠</button>
+            <button class="pill" data-style="dark-full" onclick="setStyle(this)">전체 어둠</button>
+            <button class="pill" data-style="dark-top" onclick="setStyle(this)">상단 어둠</button>
+            <button class="pill" data-style="tint" onclick="setStyle(this)">틴트</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button class="primary" onclick="downloadCard()">PNG 저장 (1080×1350)</button>
+        <button onclick="copyCaption()">캡션 복사</button>
+      </div>
+      <p class="hint">* 업로드 이미지 사용 시 CORS 없이 저장됩니다.<br>* URL 이미지가 깨지면 직접 이미지를 저장 후 업로드하세요.</p>
+    </div>
+
+    <!-- Preview -->
+    <div>
+      <div class="preview-wrap">
+        <div id="card">
+          <div id="card-bg"></div>
+          <div id="card-overlay"></div>
+          <div id="card-content">
+            <div id="card-badge">קוריאה בעברית</div>
+            <div id="card-bottom">
+              <div id="card-logo">@koreabeivrit</div>
+              <div id="card-title">제목이 여기에<br>표시됩니다</div>
+              <div id="card-sub"></div>
+              <div id="card-cta">Read more on blog →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const CB = 'gc_' + Math.random().toString(36).slice(2);
+  let currentStyle = 'dark-bottom';
+  let localSrc = null;
+
+  const overlays = {
+    'dark-bottom': 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.04) 100%)',
+    'dark-full':   'rgba(0,0,0,0.55)',
+    'dark-top':    'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.04) 100%)',
+    'tint':        'rgba(26,22,18,0.62)'
+  };
+
+  function setStyle(btn) {
+    document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentStyle = btn.dataset.style;
+    render();
+  }
+
+  function onFileUpload(input) {
+    const file = input.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      localSrc = e.target.result;
+      document.getElementById('f-img').value = '';
+      const thumb = document.getElementById('img-thumb');
+      thumb.src = localSrc;
+      thumb.style.display = 'block';
+      render();
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function onUrlInput() {
+    localSrc = null;
+    document.getElementById('img-thumb').style.display = 'none';
+    render();
+  }
+
+  function render() {
+    const title = document.getElementById('f-title').value;
+    const sub   = document.getElementById('f-sub').value;
+    const imgUrl = document.getElementById('f-img').value.trim();
+    const logo  = document.getElementById('f-logo').value;
+    const badge = document.getElementById('f-badge').value;
+    const cta   = document.getElementById('f-cta').value;
+
+    document.getElementById('card-title').textContent = title || '제목이 여기에 표시됩니다';
+    document.getElementById('card-logo').textContent  = logo;
+    document.getElementById('card-badge').textContent = badge;
+    document.getElementById('card-cta').textContent   = cta;
+
+    const subEl = document.getElementById('card-sub');
+    if (sub.trim()) { subEl.textContent = sub; subEl.style.display = 'block'; }
+    else { subEl.style.display = 'none'; }
+
+    const src = localSrc || (imgUrl || null);
+    const bg = document.getElementById('card-bg');
+    if (src) {
+      bg.style.backgroundImage = `url(${src})`;
+      bg.style.backgroundColor = '#111';
+    } else {
+      bg.style.backgroundImage = 'none';
+      bg.style.backgroundColor = '#1a1612';
+    }
+
+    document.getElementById('card-overlay').style.background = overlays[currentStyle];
+  }
+
+  function setStatus(msg, type) {
+    const el = document.getElementById('status');
+    el.textContent = msg;
+    el.className = 'status' + (type ? ' ' + type : '');
+  }
+
+  function fetchPost() {
+    const url = document.getElementById('url-in').value.trim();
+    if (!url) return;
+    setStatus('가져오는 중...');
+
+    window[CB] = function(data) {
+      try {
+        const entries = data.feed.entry;
+        if (!entries?.length) { setStatus('포스트를 찾을 수 없습니다', 'err'); return; }
+        const entry   = entries[0];
+        const title   = entry.title.$t;
+        const content = entry.content?.$t || entry.summary?.$t || '';
+        const imgMatch = content.match(/<img[^>]+src=["']([^"']+)["']/);
+        const img = imgMatch ? imgMatch[1].replace(/\/s\d+(-c)?\//, '/s1600/') : '';
+        const plain   = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+        const summary = plain.slice(0, 80).trim() + (plain.length > 80 ? '…' : '');
+
+        document.getElementById('f-title').value = title;
+        document.getElementById('f-sub').value   = summary;
+        document.getElementById('f-img').value   = img;
+        localSrc = null;
+        document.getElementById('img-thumb').style.display = 'none';
+        render();
+        setStatus('완료! CORS 오류 시 이미지를 직접 업로드하세요.', 'ok');
+      } catch(e) {
+        setStatus('오류: ' + e.message, 'err');
+      }
+      delete window[CB];
+      document.getElementById('_rss')?.remove();
+    };
+
+    const postId  = url.match(/\/(\d{10,})/)?.[1];
+    const feedUrl = postId
+      ? `https://koreabeivrit.blogspot.com/feeds/posts/default/${postId}?alt=json-in-script&callback=${CB}`
+      : `https://koreabeivrit.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=1&callback=${CB}`;
+
+    const s = document.createElement('script');
+    s.id  = '_rss';
+    s.src = feedUrl;
+    s.onerror = () => setStatus('RSS 오류 — 제목/이미지를 직접 입력해주세요', 'err');
+    document.body.appendChild(s);
+  }
+
+  async function downloadCard() {
+    const card = document.getElementById('card');
+    try {
+      const canvas = await html2canvas(card, {
+        scale: 3.33,
+        useCORS: !localSrc,
+        allowTaint: !!localSrc,
+        backgroundColor: null,
+        logging: false
+      });
+      const a = document.createElement('a');
+      a.download = 'insta-card.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    } catch(e) {
+      alert('저장 오류: ' + e.message + '\n\n이미지를 직접 업로드해서 다시 시도해보세요.');
+    }
+  }
+
+  function copyCaption() {
+    const title = document.getElementById('f-title').value || '';
+    const sub   = document.getElementById('f-sub').value || '';
+    const url   = document.getElementById('url-in').value || 'https://koreabeivrit.blogspot.com';
+    const text  = `${title}\n\n${sub}\n\n🔗 ${url}\n\n#קוריאה #koreabeivrit #קוריאהבעברית #סיאול #קוריאהבישראל`;
+    navigator.clipboard.writeText(text).then(() => alert('캡션 복사됨!')).catch(() => {
+      prompt('직접 복사하세요:', text);
+    });
+  }
+
+  render();
+</script>
+</body>
+</html>
+
+<!-- claude 20260520 -->
