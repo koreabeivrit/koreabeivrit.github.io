@@ -314,14 +314,21 @@ allowTaint: false,
 
       canvas.toBlob(async blob => {
         const file = new File([blob], 'insta-card.png', { type: 'image/png' });
+const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
 
-        // Apple/모바일: Web Share API → 사진 앱에 저장
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          try {
-            await navigator.share({ files: [file], title: 'Instagram Card' }); 
-            return;
-          } catch(e) { /* 취소 → 폴백 */ }
-        }
+if (
+  isMobile &&
+  navigator.canShare &&
+  navigator.canShare({ files: [file] })
+) {
+  try {
+    await navigator.share({
+      files: [file],
+      title: 'Instagram Card'
+    });
+    return;
+  } catch(e) {}
+}
 
         // 데스크탑: 일반 다운로드
         const a = document.createElement('a');
