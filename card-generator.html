@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Card Generator — Korea Be'ivrit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&family=Noto+Sans+Hebrew:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
@@ -114,8 +116,8 @@
   /* Hebrew 안정성 위해 fallback 추가 */
   font-family:
     'Noto Sans Hebrew',
-     'DM Sans',
- Arial;
+    sans-serif;
+
  
   font-size: 24px;
 
@@ -390,7 +392,9 @@ const src = localSrc || null;  // chat이 바꾸라고,...
   }
 
   async function fetchPost(customUrl = null) {
-    const url = document.getElementById('url-in').value.trim();
+const url =
+  customUrl ||
+  document.getElementById('url-in').value.trim();
     if (!url) return;
     setStatus('가져오는 중...');
     try {
@@ -438,7 +442,8 @@ render();
 
   async function downloadCard() {
 
-  await document.fonts.ready;
+await document.fonts.load('700 24px "Noto Sans Hebrew"');
+await document.fonts.ready;
 
     const card = document.getElementById('card');
     try {
