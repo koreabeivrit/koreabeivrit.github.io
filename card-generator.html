@@ -515,8 +515,19 @@
 
     document.getElementById('f-title').value = title;
     document.getElementById('f-sub').value   = desc.slice(0, 80) + (desc.length > 80 ? '…' : '');
-    document.getElementById('f-img').value   = img;
+   
+    if (img) {
+  try {
+    localSrc = await urlToBase64(img);
+    document.getElementById('f-img').value = img; // URL은 표시용으로만
+    const thumb = document.getElementById('img-thumb');
+    thumb.src = localSrc;
+    thumb.style.display = 'block';
+  } catch(e) {
+    document.getElementById('f-img').value = img;
     localSrc = null;
+  }
+}
     document.getElementById('img-thumb').style.display = 'none';
     render();
     setStatus('완료! CORS 오류 시 이미지를 직접 업로드하세요.', 'ok');
@@ -525,24 +536,54 @@
   }
 }
 
-  async function downloadCard() {
-    const card = document.getElementById('card');
-    try {
-      const canvas = await html2canvas(card, {
-        scale: 3.33,
-        useCORS: !localSrc,
-        allowTaint: !!localSrc,
-        backgroundColor: null,
-        logging: false
-      });
+async function urlToBase64(url) {
+  const proxy = `https://corsproxy.io/?${encodeURIComponent(url)}`;
+  const res = await fetch(proxy);
+  const blob = await res.blob();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
+async function downloadCard() {
+  const card = document.getElementById('card');
+  try {
+    const canvas = await html2canvas(card, {
+      scale: 3.33,
+      useCORS: false,
+      allowTaint: true,
+      backgroundColor: null,
+      logging: false
+    });
+
+    canvas.toBlob(async (blob) => {
+      const file = new File([blob], 'insta-card.png', { type: 'image/png' });
+
+      // Apple/모바일: Web Share API로 공유 → 사진 앱에 저장 가능
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file], title: 'Instagram Card' });
+          return;
+        } catch(e) {
+          // 취소하면 일반 다운로드로 폴백
+        }
+      }
+
+      // 데스크탑: 일반 다운로드
       const a = document.createElement('a');
       a.download = 'insta-card.png';
-      a.href = canvas.toDataURL('image/png');
+      a.href = URL.createObjectURL(blob);
       a.click();
-    } catch(e) {
-      alert('저장 오류: ' + e.message + '\n\n이미지를 직접 업로드해서 다시 시도해보세요.');
-    }
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    }, 'image/png');
+
+  } catch(e) {
+    alert('저장 오류: ' + e.message);
   }
+}
 
   function copyCaption() {
     const title = document.getElementById('f-title').value || '';
