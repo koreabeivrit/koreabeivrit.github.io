@@ -235,7 +235,7 @@
 
     const bg = document.getElementById('card-bg');
     // localSrc(base64) 우선, 없으면 원본 URL, 없으면 빈 배경
-    const src = localSrc || (imgUrl || null);
+const src = localSrc || null;  // chat이 바꾸라고,...
     if (src) {
       bg.style.backgroundImage = 'url(' + src + ')';
       bg.style.backgroundColor = '#111';
@@ -258,7 +258,7 @@
     if (!url) return;
     setStatus('가져오는 중...');
     try {
-      const proxy = 'https://corsproxy.io/?' + encodeURIComponent(url);
+      const proxy = 'https://corsproxy.io/?' + encodeURIComponent(url); // chat: rate limit 자주 걸립니다. 그래서 Blogger 이미지는 아예 직접 fetch 가능하도록 바꾸는게 좋습니다.. 일단 놔두고
       const res = await fetch(proxy);
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const html = await res.text();
