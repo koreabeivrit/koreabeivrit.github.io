@@ -58,7 +58,9 @@
     #card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
     #card-overlay { position: absolute; inset: 0; }
     #card-content { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 28px 26px; direction: rtl; }
-    #card-badge { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 4px 12px; border-radius: 50px; width: fit-content; background: rgba(255,255,255,.16); color: #fff; border: 1px solid rgba(255,255,255,.28); margin-bottom: auto; }
+    #card-badge { font-size: 10px; font-weight: 600; 
+         direction: rtl;   /* chat */
+letter-spacing: .12em; text-transform: uppercase; padding: 4px 12px; border-radius: 50px; width: fit-content; background: rgba(255,255,255,.16); color: #fff; border: 1px solid rgba(255,255,255,.28); margin-bottom: auto; }
     #card-bottom { margin-top: auto; }
     #card-logo { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 8px; }
     #card-title { font-family: 'DM Serif Display', serif; 
@@ -69,7 +71,11 @@
     /* 400 */
     line-height: 1.25; color: #fff; margin-bottom: 10px; }
     #card-sub { font-size: 12px; line-height: 1.65; color: rgba(255,255,255,.65); margin-bottom: 14px; display: none; }
-    #card-cta { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 50px; font-size: 11px; font-weight: 600; background: rgba(255,255,255,.16); color: #fff; border: 1px solid rgba(255,255,255,.32); width: fit-content; letter-spacing: .04em; }
+    #card-cta { display: inline-flex; align-items: center;
+      
+  line-height: 1;   /* chat */
+   direction: rtl;   /* chat */
+   gap: 6px; padding: 7px 16px; border-radius: 50px; font-size: 11px; font-weight: 600; background: rgba(255,255,255,.16); color: #fff; border: 1px solid rgba(255,255,255,.32); width: fit-content; letter-spacing: .04em; }
   </style>
 </head>
 <body>
