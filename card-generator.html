@@ -98,15 +98,15 @@
         </div>
         <div class="field">
           <label>채널명</label>
-          <input type="text" id="f-logo" value="@koreabeivrit" oninput="render()" />
+          <input type="text" id="f-logo" value="koreabeivrit@" oninput="render()" />
         </div>
         <div class="field">
           <label>배지 텍스트</label>
-          <input type="text" id="f-badge" value="קוריאה בעברית" oninput="render()" />
+          <input type="text" id="f-badge" value="קוריאהבעברית" oninput="render()" />
         </div>
         <div class="field">
           <label>CTA 문구</label>
-          <input type="text" id="f-cta" value="Read more on blog →" oninput="render()" />
+          <input type="text" id="f-cta" value="קרא עוד ←" oninput="render()" />
         </div>
         <div class="field">
           <label>오버레이 스타일</label>
@@ -130,12 +130,12 @@
           <div id="card-bg"></div>
           <div id="card-overlay"></div>
           <div id="card-content">
-            <div id="card-badge">קוריאה בעברית</div>
+            <div id="card-badge">קוריאהבעברית</div>
             <div id="card-bottom">
-              <div id="card-logo">@koreabeivrit</div>
+              <div id="card-logo">koreabeivrit@</div>
               <div id="card-title">제목이 여기에 표시됩니다</div>
               <div id="card-sub"></div>
-              <div id="card-cta">Read more on blog →</div>
+              <div id="card-cta">קרא עוד ←</div>
             </div>
           </div>
         </div>
@@ -318,7 +318,7 @@ allowTaint: false,
         // Apple/모바일: Web Share API → 사진 앱에 저장
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
           try {
-            await navigator.share({ files: [file], title: 'Instagram Card' });
+            await navigator.share({ files: [file], title: 'Instagram Card' }); 
             return;
           } catch(e) { /* 취소 → 폴백 */ }
         }
