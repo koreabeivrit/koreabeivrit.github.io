@@ -22,7 +22,7 @@ const phone = this.getAttribute('phone') || '972547310116';
           margin: 0 auto;
 
           background: #fff;
-          padding: 40px 36px;
+          padding: 40px 36px; 
 
           border: 1px solid #ece7df;
           border-radius: 8px;
