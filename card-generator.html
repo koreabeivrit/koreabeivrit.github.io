@@ -12,14 +12,7 @@
       --bg: #f5f0e8; --surface: #fff; --border: #e8e2d8;
       --text: #1a1612; --muted: #9b8c78; --radius: 6px;
     }
-    body { font-family: 
-      'DM Sans', sans-serif;  /*claude.*/
-          /* -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Arial,
-    sans-serif; */
-      background: var(--bg); color: var(--text); min-height: 100vh; padding: 40px 20px; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 40px 20px; }
     .page { max-width: 960px; margin: 0 auto; }
     header { text-align: center; margin-bottom: 40px; direction: rtl; }
     header h1 { font-family: 'DM Serif Display', serif; font-size: 32px; font-weight: 400; margin-bottom: 6px; }
@@ -58,128 +51,12 @@
     #card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
     #card-overlay { position: absolute; inset: 0; }
     #card-content { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 28px 26px; direction: rtl; }
-  
-  
-      /* #card-badge {  letter-spacing: .12em; width: fit-content; */
-
-
-    #card-badge {
-  font-size: 10px;
-  font-weight: 600;
-
-  /* direction: rtl; */
-
-  /* display: inline-flex;
-  align-items: center;
-  justify-content: center; */
-  width: fit-content;
-  line-height: 1.65;
-
-   padding: 4px 12px;
-  /* padding: 5px 12px 4px; */
-
-  letter-spacing: 0;
-  text-transform: none;
-
-  transform: translateY(-1px);
-
-  border-radius: 50px;
-
-  background: rgba(255,255,255,.16);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,.28);
-
-  margin-bottom: auto;
-}
-
-#card-bottom {
-  margin-top: auto;
-}
-
-#card-logo {
-  font-size: 10px;
-  font-weight: 600;
-
-  letter-spacing: .08em; /* .12 → .08 추천 */
-
-  text-transform: uppercase;
-
-  color: rgba(255,255,255,.55);
-
-  margin-bottom: 8px;
-}
-
-#card-title {
-
-  /* Hebrew 안정성 위해 fallback 추가 */
-  font-family:
-    "DM Serif Display",
-    "Noto Sans Hebrew",
-    Arial,
-    sans-serif;
-
-  font-size: 24px;
-
-  font-weight: 600;
-
-  line-height: 1.25;
-
-  color: #fff;
-
-  margin-bottom: 10px;
-
-  direction: rtl;
-
-  text-wrap: balance; /* modern browser 예쁘게 줄바꿈 */
-}
-
-#card-sub {
-  font-size: 12px;
-
-  line-height: 1.65;
-
-  color: rgba(255,255,255,.65);
-
-  margin-bottom: 14px;
-
-  display: none;
-
-  direction: rtl;
-}
-
-#card-cta {
-
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  direction: rtl;
-
-  line-height: 1;
-
-  gap: 6px;
-
-  padding: 8px 16px 7px;
-
-  transform: translateY(-1px);
-
-  border-radius: 50px;
-
-  font-size: 11px;
-
-  font-weight: 600;
-
-  background: rgba(255,255,255,.16);
-
-  color: #fff;
-
-  border: 1px solid rgba(255,255,255,.32);
-
-  width: fit-content;
-
-  letter-spacing: 0;
-}
+    #card-badge { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 4px 12px; border-radius: 50px; width: fit-content; background: rgba(255,255,255,.16); color: #fff; border: 1px solid rgba(255,255,255,.28); margin-bottom: auto; }
+    #card-bottom { margin-top: auto; }
+    #card-logo { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 8px; }
+    #card-title { font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 400; line-height: 1.25; color: #fff; margin-bottom: 10px; }
+    #card-sub { font-size: 12px; line-height: 1.65; color: rgba(255,255,255,.65); margin-bottom: 14px; display: none; }
+    #card-cta { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 50px; font-size: 11px; font-weight: 600; background: rgba(255,255,255,.16); color: #fff; border: 1px solid rgba(255,255,255,.32); width: fit-content; letter-spacing: .04em; }
   </style>
 </head>
 <body>
@@ -221,15 +98,15 @@
         </div>
         <div class="field">
           <label>채널명</label>
-          <input type="text" id="f-logo" value="koreabeivrit@" oninput="render()" />
+          <input type="text" id="f-logo" value="@koreabeivrit" oninput="render()" />
         </div>
         <div class="field">
           <label>배지 텍스트</label>
-          <input type="text" id="f-badge" value="קוריאהבעברית" oninput="render()" />
+          <input type="text" id="f-badge" value="קוריאה בעברית" oninput="render()" />
         </div>
         <div class="field">
           <label>CTA 문구</label>
-          <input type="text" id="f-cta" value="קרא עוד ←" oninput="render()" />
+          <input type="text" id="f-cta" value="Read more on blog →" oninput="render()" />
         </div>
         <div class="field">
           <label>오버레이 스타일</label>
@@ -253,12 +130,12 @@
           <div id="card-bg"></div>
           <div id="card-overlay"></div>
           <div id="card-content">
-            <div id="card-badge">קוריאהבעברית</div>
+            <div id="card-badge">קוריאה בעברית</div>
             <div id="card-bottom">
-              <div id="card-logo">koreabeivrit@</div>
+              <div id="card-logo">@koreabeivrit</div>
               <div id="card-title">제목이 여기에 표시됩니다</div>
               <div id="card-sub"></div>
-              <div id="card-cta">קרא עוד ←</div>
+              <div id="card-cta">Read more on blog →</div>
             </div>
           </div>
         </div>
@@ -320,28 +197,24 @@
     t.style.display = 'none';
   }
 
-async function fetchBase64(url) {
-  try {
-    const res = await fetch(url, { mode: 'cors' });
-
-    if (!res.ok) throw new Error('fetch failed');
-
-    const blob = await res.blob();
-
-    return await new Promise((resolve, reject) => {
-      const fr = new FileReader();
-
-      fr.onload = () => resolve(fr.result);
-      fr.onerror = reject;
-
-      fr.readAsDataURL(blob);
-    });
-
-  } catch(e) {
-    console.warn(e);
-    return null;
+  // URL → base64 (corsproxy 경유)
+  async function fetchBase64(url) {
+    try {
+      const proxy = 'https://corsproxy.io/?' + encodeURIComponent(url);
+      const res = await fetch(proxy);
+      if (!res.ok) throw new Error('fetch failed');
+      const blob = await res.blob();
+      return await new Promise((resolve, reject) => {
+        const fr = new FileReader();
+        fr.onload = () => resolve(fr.result);
+        fr.onerror = reject;
+        fr.readAsDataURL(blob);
+      });
+    } catch(e) {
+      console.warn('base64 변환 실패, 원본 URL 사용:', e);
+      return null;
+    }
   }
-}
 
   function render() {
     const title  = document.getElementById('f-title').value;
@@ -362,7 +235,7 @@ async function fetchBase64(url) {
 
     const bg = document.getElementById('card-bg');
     // localSrc(base64) 우선, 없으면 원본 URL, 없으면 빈 배경
-const src = localSrc || null;  // chat이 바꾸라고,...
+    const src = localSrc || (imgUrl || null);
     if (src) {
       bg.style.backgroundImage = 'url(' + src + ')';
       bg.style.backgroundColor = '#111';
@@ -385,7 +258,7 @@ const src = localSrc || null;  // chat이 바꾸라고,...
     if (!url) return;
     setStatus('가져오는 중...');
     try {
-      const proxy = 'https://corsproxy.io/?' + encodeURIComponent(url); // chat: rate limit 자주 걸립니다. 그래서 Blogger 이미지는 아예 직접 fetch 가능하도록 바꾸는게 좋습니다.. 일단 놔두고
+      const proxy = 'https://corsproxy.io/?' + encodeURIComponent(url);
       const res = await fetch(proxy);
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const html = await res.text();
@@ -425,36 +298,26 @@ const src = localSrc || null;  // chat이 바꾸라고,...
   }
 
   async function downloadCard() {
-
-  await document.fonts.ready;
-
     const card = document.getElementById('card');
     try {
       const canvas = await html2canvas(card, {
         scale: 3.33,
-useCORS: true,
-allowTaint: false,
+        useCORS: false,   // base64라서 CORS 불필요
+        allowTaint: true,
         backgroundColor: null,
         logging: false
       });
 
       canvas.toBlob(async blob => {
         const file = new File([blob], 'insta-card.png', { type: 'image/png' });
-const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
 
-if (
-  isMobile &&
-  navigator.canShare &&
-  navigator.canShare({ files: [file] })
-) {
-  try {
-    await navigator.share({
-      files: [file],
-      title: 'Instagram Card'
-    });
-    return;
-  } catch(e) {}
-}
+        // Apple/모바일: Web Share API → 사진 앱에 저장
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({ files: [file], title: 'Instagram Card' });
+            return;
+          } catch(e) { /* 취소 → 폴백 */ }
+        }
 
         // 데스크탑: 일반 다운로드
         const a = document.createElement('a');
