@@ -8,328 +8,67 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg:       #f5f0e8;
-      --surface:  #fff;
-      --border:   #e8e2d8;
-      --text:     #1a1612;
-      --muted:    #9b8c78;
-      --accent:   #1a1612;
-      --radius:   6px;
+      --bg: #f5f0e8; --surface: #fff; --border: #e8e2d8;
+      --text: #1a1612; --muted: #9b8c78; --radius: 6px;
     }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      padding: 40px 20px;
-    }
-
-    .page {
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-      direction: rtl;
-    }
-
-    header h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 32px;
-      font-weight: 400;
-      margin-bottom: 6px;
-    }
-
-    header p {
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: start;
-    }
-
-    @media (max-width: 700px) {
-      .layout { grid-template-columns: 1fr; }
-    }
-
-    /* ── Panel ── */
-    .panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-    }
-
-    .panel-title {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 40px 20px; }
+    .page { max-width: 960px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 40px; direction: rtl; }
+    header h1 { font-family: 'DM Serif Display', serif; font-size: 32px; font-weight: 400; margin-bottom: 6px; }
+    header p { font-size: 14px; color: var(--muted); }
+    .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+    @media (max-width: 700px) { .layout { grid-template-columns: 1fr; } }
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px; }
+    .panel-title { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
     .field { margin-bottom: 14px; }
-
-    .field label {
-      display: block;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--muted);
-      margin-bottom: 5px;
-    }
-
-    .field input,
-    .field textarea,
-    .field select {
-      width: 100%;
-      padding: 9px 12px;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      color: var(--text);
-      background: #fff;
-      outline: none;
-      transition: border-color .18s;
-      direction: ltr;
-    }
-
-    .field input:focus,
-    .field textarea:focus { border-color: var(--text); }
-
+    .field label { display: block; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 5px; }
+    .field input, .field textarea { width: 100%; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); background: #fff; outline: none; transition: border-color .18s; direction: ltr; }
+    .field input:focus, .field textarea:focus { border-color: var(--text); }
     .field textarea { height: 70px; resize: vertical; }
-
     .url-row { display: flex; gap: 8px; }
     .url-row input { flex: 1; }
-
     .img-row { display: flex; gap: 8px; align-items: stretch; }
     .img-row input { flex: 1; }
-
-    .status {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 6px;
-      min-height: 18px;
-    }
-
-    .status.ok  { color: #2a7a4f; }
+    .status { font-size: 12px; color: var(--muted); margin-top: 6px; min-height: 18px; }
+    .status.ok { color: #2a7a4f; }
     .status.err { color: #b94040; }
-
-    /* ── Buttons ── */
-    button {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 9px 16px;
-      border: 1.5px solid var(--text);
-      border-radius: var(--radius);
-      background: #fff;
-      color: var(--text);
-      cursor: pointer;
-      transition: background .15s, color .15s;
-      white-space: nowrap;
-    }
-
+    button { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; padding: 9px 16px; border: 1.5px solid var(--text); border-radius: var(--radius); background: #fff; color: var(--text); cursor: pointer; transition: background .15s, color .15s; white-space: nowrap; }
     button:hover { background: var(--text); color: #fff; }
-    button:active { opacity: .8; }
-
-    button.primary {
-      background: var(--text);
-      color: #fff;
-    }
-
+    button.primary { background: var(--text); color: #fff; }
     button.primary:hover { opacity: .85; }
-
-    .upload-btn {
-      position: relative;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .upload-btn input[type=file] {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    .style-pills {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .pill {
-      font-size: 12px;
-      padding: 5px 12px;
-      border-radius: 50px;
-      border: 1.5px solid var(--border);
-      background: #fff;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all .15s;
-    }
-
-    .pill.active {
-      border-color: var(--text);
-      background: var(--text);
-      color: #fff;
-    }
-
-    .img-thumb {
-      width: 100%;
-      height: 52px;
-      object-fit: cover;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      margin-top: 6px;
-      display: none;
-    }
-
-    .action-row {
-      display: flex;
-      gap: 8px;
-      margin-top: 20px;
-    }
-
+    .upload-btn { position: relative; overflow: hidden; flex-shrink: 0; }
+    .upload-btn input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
+    .style-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+    .pill { font-size: 12px; padding: 5px 12px; border-radius: 50px; border: 1.5px solid var(--border); background: #fff; color: var(--muted); cursor: pointer; transition: all .15s; }
+    .pill.active { border-color: var(--text); background: var(--text); color: #fff; }
+    .img-thumb { width: 100%; height: 60px; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--border); margin-top: 6px; display: none; }
+    .action-row { display: flex; gap: 8px; margin-top: 20px; }
     .action-row button { flex: 1; }
-
-    .hint {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 8px;
-      line-height: 1.5;
-    }
-
-    /* ── Card Preview ── */
-    .preview-wrap {
-      background: #1a1612;
-      border-radius: 8px;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      position: sticky;
-      top: 20px;
-    }
-
-    /* actual card — 1080:1350 = 4:5 */
-    #card {
-      position: relative;
-      width: 324px;
-      height: 405px;
-      border-radius: 10px;
-      overflow: hidden;
-      background: #1a1612;
-    }
-
-    #card-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-    }
-
-    #card-overlay {
-      position: absolute;
-      inset: 0;
-    }
-
-    #card-content {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      padding: 28px 26px;
-      direction: rtl;
-    }
-
-    #card-badge {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 50px;
-      width: fit-content;
-      background: rgba(255,255,255,.16);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,.28);
-      margin-bottom: auto;
-    }
-
+    .hint { font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+    .preview-wrap { background: #1a1612; border-radius: 8px; padding: 20px; display: flex; justify-content: center; position: sticky; top: 20px; }
+    #card { position: relative; width: 324px; height: 405px; border-radius: 10px; overflow: hidden; background: #1a1612; }
+    #card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    #card-overlay { position: absolute; inset: 0; }
+    #card-content { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 28px 26px; direction: rtl; }
+    #card-badge { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 4px 12px; border-radius: 50px; width: fit-content; background: rgba(255,255,255,.16); color: #fff; border: 1px solid rgba(255,255,255,.28); margin-bottom: auto; }
     #card-bottom { margin-top: auto; }
-
-    #card-logo {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.55);
-      margin-bottom: 8px;
-    }
-
-    #card-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 24px;
-      font-weight: 400;
-      line-height: 1.25;
-      color: #fff;
-      margin-bottom: 10px;
-    }
-
-    #card-sub {
-      font-size: 12px;
-      line-height: 1.65;
-      color: rgba(255,255,255,.65);
-      margin-bottom: 14px;
-      display: none;
-    }
-
-    #card-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 16px;
-      border-radius: 50px;
-      font-size: 11px;
-      font-weight: 600;
-      background: rgba(255,255,255,.16);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,.32);
-      width: fit-content;
-      letter-spacing: .04em;
-    }
+    #card-logo { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 8px; }
+    #card-title { font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 400; line-height: 1.25; color: #fff; margin-bottom: 10px; }
+    #card-sub { font-size: 12px; line-height: 1.65; color: rgba(255,255,255,.65); margin-bottom: 14px; display: none; }
+    #card-cta { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 50px; font-size: 11px; font-weight: 600; background: rgba(255,255,255,.16); color: #fff; border: 1px solid rgba(255,255,255,.32); width: fit-content; letter-spacing: .04em; }
   </style>
 </head>
 <body>
-
 <div class="page">
-
   <header>
     <h1>Instagram Card Generator</h1>
     <p>포스트 URL → 카드 자동 생성 → PNG 저장</p>
   </header>
-
   <div class="layout">
-
-    <!-- Controls -->
     <div>
       <div class="panel">
         <div class="panel-title">포스트 불러오기</div>
-
         <div class="field">
           <label>포스트 URL</label>
           <div class="url-row">
@@ -339,47 +78,36 @@
           <div class="status" id="status">URL을 붙여넣고 가져오기를 누르세요</div>
         </div>
       </div>
-
       <div class="panel" style="margin-top:16px;">
         <div class="panel-title">카드 내용</div>
-
         <div class="field">
           <label>제목</label>
           <textarea id="f-title" placeholder="포스트 제목" oninput="render()"></textarea>
         </div>
-
         <div class="field">
           <label>한 줄 요약 (선택)</label>
           <textarea id="f-sub" placeholder="짧은 설명..." oninput="render()"></textarea>
         </div>
-
         <div class="field">
           <label>이미지</label>
           <div class="img-row">
             <input type="text" id="f-img" placeholder="URL 직접 입력..." oninput="onUrlInput()" />
-            <button class="upload-btn">
-              업로드
-              <input type="file" accept="image/*" onchange="onFileUpload(this)" />
-            </button>
+            <button class="upload-btn">업로드<input type="file" accept="image/*" onchange="onFileUpload(this)" /></button>
           </div>
           <img id="img-thumb" class="img-thumb" alt="" />
         </div>
-
         <div class="field">
           <label>채널명</label>
-          <input type="text" id="f-logo" value="koreabeivrit@" oninput="render()" />
+          <input type="text" id="f-logo" value="@koreabeivrit" oninput="render()" />
         </div>
-
         <div class="field">
           <label>배지 텍스트</label>
-          <input type="text" id="f-badge" value="קוריאהבעברית" oninput="render()" />
+          <input type="text" id="f-badge" value="קוריאה בעברית" oninput="render()" />
         </div>
-
         <div class="field">
           <label>CTA 문구</label>
-          <input type="text" id="f-cta" value="קרא עוד←" oninput="render()" />
+          <input type="text" id="f-cta" value="Read more on blog →" oninput="render()" />
         </div>
-
         <div class="field">
           <label>오버레이 스타일</label>
           <div class="style-pills">
@@ -390,15 +118,12 @@
           </div>
         </div>
       </div>
-
       <div class="action-row">
         <button class="primary" onclick="downloadCard()">PNG 저장 (1080×1350)</button>
         <button onclick="copyCaption()">캡션 복사</button>
       </div>
-      <p class="hint">* 업로드 이미지 사용 시 CORS 없이 저장됩니다.<br>* URL 이미지가 깨지면 직접 이미지를 저장 후 업로드하세요.</p>
+      <p class="hint">* 이미지는 자동으로 base64 변환됩니다 (저장 시 이미지 포함)<br>* Apple 기기: 공유 시트 → 사진에 저장</p>
     </div>
-
-    <!-- Preview -->
     <div>
       <div class="preview-wrap">
         <div id="card">
@@ -408,7 +133,7 @@
             <div id="card-badge">קוריאה בעברית</div>
             <div id="card-bottom">
               <div id="card-logo">@koreabeivrit</div>
-              <div id="card-title">제목이 여기에<br>표시됩니다</div>
+              <div id="card-title">제목이 여기에 표시됩니다</div>
               <div id="card-sub"></div>
               <div id="card-cta">Read more on blog →</div>
             </div>
@@ -416,14 +141,12 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
 <script>
-  const CB = 'gc_' + Math.random().toString(36).slice(2);
   let currentStyle = 'dark-bottom';
-  let localSrc = null;
+  let localSrc = null; // 항상 base64 또는 null
 
   const overlays = {
     'dark-bottom': 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.04) 100%)',
@@ -439,6 +162,7 @@
     render();
   }
 
+  // 파일 업로드 → base64
   function onFileUpload(input) {
     const file = input.files[0];
     if (!file) return;
@@ -446,27 +170,59 @@
     reader.onload = e => {
       localSrc = e.target.result;
       document.getElementById('f-img').value = '';
-      const thumb = document.getElementById('img-thumb');
-      thumb.src = localSrc;
-      thumb.style.display = 'block';
+      showThumb(localSrc);
       render();
     };
     reader.readAsDataURL(file);
   }
 
-  function onUrlInput() {
-    localSrc = null;
-    document.getElementById('img-thumb').style.display = 'none';
+  // URL 직접 입력 → base64로 변환 시도
+  async function onUrlInput() {
+    const url = document.getElementById('f-img').value.trim();
+    if (!url) { localSrc = null; hideThumb(); render(); return; }
+    localSrc = await fetchBase64(url);
+    if (localSrc) showThumb(localSrc);
     render();
   }
 
+  function showThumb(src) {
+    const t = document.getElementById('img-thumb');
+    t.src = src;
+    t.style.display = 'block';
+  }
+
+  function hideThumb() {
+    const t = document.getElementById('img-thumb');
+    t.src = '';
+    t.style.display = 'none';
+  }
+
+  // URL → base64 (corsproxy 경유)
+  async function fetchBase64(url) {
+    try {
+      const proxy = 'https://corsproxy.io/?' + encodeURIComponent(url);
+      const res = await fetch(proxy);
+      if (!res.ok) throw new Error('fetch failed');
+      const blob = await res.blob();
+      return await new Promise((resolve, reject) => {
+        const fr = new FileReader();
+        fr.onload = () => resolve(fr.result);
+        fr.onerror = reject;
+        fr.readAsDataURL(blob);
+      });
+    } catch(e) {
+      console.warn('base64 변환 실패, 원본 URL 사용:', e);
+      return null;
+    }
+  }
+
   function render() {
-    const title = document.getElementById('f-title').value;
-    const sub   = document.getElementById('f-sub').value;
+    const title  = document.getElementById('f-title').value;
+    const sub    = document.getElementById('f-sub').value;
     const imgUrl = document.getElementById('f-img').value.trim();
-    const logo  = document.getElementById('f-logo').value;
-    const badge = document.getElementById('f-badge').value;
-    const cta   = document.getElementById('f-cta').value;
+    const logo   = document.getElementById('f-logo').value;
+    const badge  = document.getElementById('f-badge').value;
+    const cta    = document.getElementById('f-cta').value;
 
     document.getElementById('card-title').textContent = title || '제목이 여기에 표시됩니다';
     document.getElementById('card-logo').textContent  = logo;
@@ -477,10 +233,11 @@
     if (sub.trim()) { subEl.textContent = sub; subEl.style.display = 'block'; }
     else { subEl.style.display = 'none'; }
 
-    const src = localSrc || (imgUrl || null);
     const bg = document.getElementById('card-bg');
+    // localSrc(base64) 우선, 없으면 원본 URL, 없으면 빈 배경
+    const src = localSrc || (imgUrl || null);
     if (src) {
-      bg.style.backgroundImage = `url(${src})`;
+      bg.style.backgroundImage = 'url(' + src + ')';
       bg.style.backgroundColor = '#111';
     } else {
       bg.style.backgroundImage = 'none';
@@ -495,109 +252,97 @@
     el.textContent = msg;
     el.className = 'status' + (type ? ' ' + type : '');
   }
-  
+
   async function fetchPost() {
-  const url = document.getElementById('url-in').value.trim();
-  if (!url) return;
-  setStatus('가져오는 중...');
+    const url = document.getElementById('url-in').value.trim();
+    if (!url) return;
+    setStatus('가져오는 중...');
+    try {
+      const proxy = 'https://corsproxy.io/?' + encodeURIComponent(url);
+      const res = await fetch(proxy);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const html = await res.text();
+      const doc  = new DOMParser().parseFromString(html, 'text/html');
 
-  try {
-    const proxy = `https://corsproxy.io/?${encodeURIComponent(url)}`;
-    const res   = await fetch(proxy);
-    if (!res.ok) throw new Error('fetch 실패');
-    const html  = await res.text();
-    const doc   = new DOMParser().parseFromString(html, 'text/html');
+      const title = doc.querySelector('meta[property="og:title"]')?.content
+                 || doc.querySelector('title')?.textContent || '';
+      const imgUrl = doc.querySelector('meta[property="og:image"]')?.content || '';
+      const desc   = doc.querySelector('meta[property="og:description"]')?.content || '';
 
-    const title = doc.querySelector('meta[property="og:title"]')?.content
-               || doc.querySelector('title')?.textContent || '';
-    const img   = doc.querySelector('meta[property="og:image"]')?.content || '';
-    const desc  = doc.querySelector('meta[property="og:description"]')?.content || '';
+      document.getElementById('f-title').value = title;
+      document.getElementById('f-sub').value   = desc.slice(0, 80) + (desc.length > 80 ? '…' : '');
+      document.getElementById('f-img').value   = imgUrl;
 
-    document.getElementById('f-title').value = title;
-    document.getElementById('f-sub').value   = desc.slice(0, 80) + (desc.length > 80 ? '…' : '');
-   
-    if (img) {
-  try {
-    localSrc = await urlToBase64(img);
-    document.getElementById('f-img').value = img; // URL은 표시용으로만
-    const thumb = document.getElementById('img-thumb');
-    thumb.src = localSrc;
-    thumb.style.display = 'block';
-  } catch(e) {
-    document.getElementById('f-img').value = img;
-    localSrc = null;
-  }
-}
-    document.getElementById('img-thumb').style.display = 'none';
-    render();
-    setStatus('완료! CORS 오류 시 이미지를 직접 업로드하세요.', 'ok');
-  } catch(e) {
-    setStatus('오류: ' + e.message + ' — 직접 입력해주세요', 'err');
-  }
-}
+      setStatus('이미지 변환 중...', '');
 
-async function urlToBase64(url) {
-  const proxy = `https://corsproxy.io/?${encodeURIComponent(url)}`;
-  const res = await fetch(proxy);
-  const blob = await res.blob();
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
-    reader.readAsDataURL(blob);
-  });
-}
-
-async function downloadCard() {
-  const card = document.getElementById('card');
-  try {
-    const canvas = await html2canvas(card, {
-      scale: 3.33,
-      useCORS: false,
-      allowTaint: true,
-      backgroundColor: null,
-      logging: false
-    });
-
-    canvas.toBlob(async (blob) => {
-      const file = new File([blob], 'insta-card.png', { type: 'image/png' });
-
-      // Apple/모바일: Web Share API로 공유 → 사진 앱에 저장 가능
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        try {
-          await navigator.share({ files: [file], title: 'Instagram Card' });
-          return;
-        } catch(e) {
-          // 취소하면 일반 다운로드로 폴백
+      // 이미지 base64 변환 (프리뷰 + 저장 모두 보장)
+      if (imgUrl) {
+        localSrc = await fetchBase64(imgUrl);
+        if (localSrc) {
+          showThumb(localSrc);
+          setStatus('완료!', 'ok');
+        } else {
+          hideThumb();
+          setStatus('완료! (이미지 변환 실패 → 업로드 사용)', 'ok');
         }
+      } else {
+        localSrc = null;
+        hideThumb();
+        setStatus('완료! (이미지 없음)', 'ok');
       }
 
-      // 데스크탑: 일반 다운로드
-      const a = document.createElement('a');
-      a.download = 'insta-card.png';
-      a.href = URL.createObjectURL(blob);
-      a.click();
-      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-    }, 'image/png');
-
-  } catch(e) {
-    alert('저장 오류: ' + e.message);
+      render();
+    } catch(e) {
+      setStatus('오류: ' + e.message, 'err');
+    }
   }
-}
+
+  async function downloadCard() {
+    const card = document.getElementById('card');
+    try {
+      const canvas = await html2canvas(card, {
+        scale: 3.33,
+        useCORS: false,   // base64라서 CORS 불필요
+        allowTaint: true,
+        backgroundColor: null,
+        logging: false
+      });
+
+      canvas.toBlob(async blob => {
+        const file = new File([blob], 'insta-card.png', { type: 'image/png' });
+
+        // Apple/모바일: Web Share API → 사진 앱에 저장
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({ files: [file], title: 'Instagram Card' });
+            return;
+          } catch(e) { /* 취소 → 폴백 */ }
+        }
+
+        // 데스크탑: 일반 다운로드
+        const a = document.createElement('a');
+        a.download = 'insta-card.png';
+        a.href = URL.createObjectURL(blob);
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      }, 'image/png');
+
+    } catch(e) {
+      alert('저장 오류: ' + e.message);
+    }
+  }
 
   function copyCaption() {
     const title = document.getElementById('f-title').value || '';
     const sub   = document.getElementById('f-sub').value || '';
     const url   = document.getElementById('url-in').value || 'https://koreabeivrit.blogspot.com';
-    const text  = `${title}\n\n${sub}\n\n🔗 ${url}\n\n#קוריאה #koreabeivrit #קוריאהבעברית #סיאול #קוריאהבישראל`;
-    navigator.clipboard.writeText(text).then(() => alert('캡션 복사됨!')).catch(() => {
-      prompt('직접 복사하세요:', text);
-    });
+    const text  = title + '\n\n' + sub + '\n\n🔗 ' + url + '\n\n#קוריאה #koreabeivrit #קוריאהבעברית #סיאול #קוריאהבישראל';
+    navigator.clipboard.writeText(text)
+      .then(() => alert('캡션 복사됨!'))
+      .catch(() => prompt('직접 복사하세요:', text));
   }
 
   render();
 </script>
 </body>
 </html>
-
-<!-- claude 20260520 -->
