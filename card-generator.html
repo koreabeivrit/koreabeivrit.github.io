@@ -197,24 +197,28 @@
     t.style.display = 'none';
   }
 
-  // URL → base64 (corsproxy 경유)
-  async function fetchBase64(url) {
-    try {
-      const proxy = 'https://corsproxy.io/?' + encodeURIComponent(url);
-      const res = await fetch(proxy);
-      if (!res.ok) throw new Error('fetch failed');
-      const blob = await res.blob();
-      return await new Promise((resolve, reject) => {
-        const fr = new FileReader();
-        fr.onload = () => resolve(fr.result);
-        fr.onerror = reject;
-        fr.readAsDataURL(blob);
-      });
-    } catch(e) {
-      console.warn('base64 변환 실패, 원본 URL 사용:', e);
-      return null;
-    }
+async function fetchBase64(url) {
+  try {
+    const res = await fetch(url, { mode: 'cors' });
+
+    if (!res.ok) throw new Error('fetch failed');
+
+    const blob = await res.blob();
+
+    return await new Promise((resolve, reject) => {
+      const fr = new FileReader();
+
+      fr.onload = () => resolve(fr.result);
+      fr.onerror = reject;
+
+      fr.readAsDataURL(blob);
+    });
+
+  } catch(e) {
+    console.warn(e);
+    return null;
   }
+}
 
   function render() {
     const title  = document.getElementById('f-title').value;
@@ -302,8 +306,8 @@ const src = localSrc || null;  // chat이 바꾸라고,...
     try {
       const canvas = await html2canvas(card, {
         scale: 3.33,
-        useCORS: false,   // base64라서 CORS 불필요
-        allowTaint: true,
+useCORS: true,
+allowTaint: false,
         backgroundColor: null,
         logging: false
       });
