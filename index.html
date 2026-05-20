@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
     <head>
+                    <!-- Google tag (gtag.js) -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-5W8ZBWHBGE"></script>
+            <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-5W8ZBWHBGE');
+            </script>
+
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="koreabeivrit landing page" />
@@ -145,6 +155,24 @@
 </div>
 
 <site-whatsapp></site-whatsapp>
+
+<div id="visitor-count"></div>
+
+<script>
+async function loadCount() {
+  const res = await fetch(
+    'https://api.countapi.xyz/hit/koreabeivrit/card-generator'
+  );
+
+  const data = await res.json();
+
+  document.getElementById('visitor-count').textContent =
+    'Visitors: ' + data.value;
+}
+
+loadCount();
+</script>
+
 <site-footer></site-footer>
 
         <!-- Bootstrap core JS-->
