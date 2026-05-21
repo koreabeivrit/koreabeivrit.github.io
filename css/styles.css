@@ -11480,7 +11480,8 @@ body{
         display: grid;
     grid-template-columns: repeat(2, 1fr);  /* 2열 고정 */
     gap: 10px;
-    padding: 1rem 0;
+    padding: 1rem 1rem;
+    /* padding: 1rem 0; */
     overflow-x: visible;
   }
 
@@ -11603,7 +11604,8 @@ body{
 }
 
 @media (max-width: 768px) {
-  .tour-grid   { grid-template-columns: repeat(2, 1fr); }
+  .tour-grid   { grid-template-columns: repeat(2, 1fr);
+  padding: 1rem 1rem; }
 }
 
 @media (max-width: 480px) {
