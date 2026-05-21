@@ -156,22 +156,6 @@
 
 <site-whatsapp></site-whatsapp>
 
-<div id="visitor-count"></div>
-
-<script>
-async function loadCount() {
-  const res = await fetch(
-    'https://api.countapi.xyz/hit/koreabeivrit/card-generator'
-  );
-
-  const data = await res.json();
-
-  document.getElementById('visitor-count').textContent =
-    'Visitors: ' + data.value;
-}
-
-loadCount();
-</script>
 
 <site-footer></site-footer>
 
