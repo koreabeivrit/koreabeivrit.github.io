@@ -10838,8 +10838,8 @@ p {
 }
 
 .page-section {
-  padding:6rem 0;
-  /* 모바일. pc는 아래에 */
+  padding:3rem 0;
+  /* 모바일. pc는 아래에. 6 크다. */
 }
 .page-section h2.section-heading, .page-section .section-heading.h2 {
   font-size: 2.0rem; /* 2.5 */
@@ -11447,43 +11447,54 @@ body{
   margin-top: 48px;
   margin-bottom: 64px;
   overflow-x: auto;  /* 이미지 많으면 가로 스크롤 */
+
+  -webkit-overflow-scrolling: touch;
 }
 
-.review-grid img {
-  height: 320px;        /* 고정 높이 */
-  width: auto;          /* 비율 유지 */
+.review-grid img {  
   flex-shrink: 0;
-  border-radius: 8px;
-  display: block;
-}
-@media (max-width: 768px) {
-  .review-grid {
-    flex-wrap: wrap;     /* 줄바꿈 허용 */
-    overflow-x: visible;
-  }
-  .review-grid img {
-    height: 200px;
-    flex-shrink: 1;
-  }
-}
-
-/* 이미지 hover 커서 */
-.review-grid a {
-  cursor: zoom-in;
-  flex-shrink: 0;
+  width: 300px;          /* 가로폭 고정 */
+  height: auto;            /* 비율 유지 */
+  
+  max-height: 400px;     /* 너무 긴 이미지 제한 */
+  object-fit: cover;     /* 넘치는 부분 크롭 */
+  object-position: top;  /* 상단 기준으로 크롭 */
 }
 
 .review-grid a img {
-  height: 320px;
-  width: auto;
-  border-radius: 8px;
+  /* width: 100%;           a 태그 너비에 맞춤 */
+
+
   display: block;
+  border-radius: 8px;
   transition: opacity .2s;
 }
 
 .review-grid a:hover img {
   opacity: .85;
 }
+
+
+@media (max-width: 768px) { /* 태블릿 이하 */
+  .review-grid {
+        display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* 2열 고정 */
+    gap: 10px;
+    padding: 1rem 0;
+    overflow-x: visible;
+  }
+
+  .review-grid a {
+    flex-shrink: unset;
+  }
+
+  .review-grid a img {
+    height: 200px;
+     width: 100%;          /* grid 셀 꽉 채우기 */
+    object-fit: cover;    /* 비율 맞게 크롭 */
+  }
+}
+
 
 /* lightbox */
 .lightbox {
