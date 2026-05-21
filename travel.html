@@ -61,12 +61,8 @@
                 </div>
                 </div></div>
         </section>
-    
-<div class="container">
-<!-- chat fancy blogspot update -->
-<latest-posts label="travel"></latest-posts>
-</div>
-                
+
+
 <!-- reviews -->
 <section class="page-section" id="reviews">
   <div class="container">
@@ -78,19 +74,29 @@
 
     <!-- SNS 리뷰 스크린샷 강제지정 grid-->
      <div class="review-grid">
-  <div class="review-col">
+  <a href="assets/reviews/review1.png" class="lightbox-trigger">
     <img src="assets/reviews/review1.png" alt="review" loading="lazy">
-    <img src="assets/reviews/review4.jpg" alt="review" loading="lazy">
-  </div>
-  <div class="review-col">
+  </a>
+  <a href="assets/reviews/review2.png" class="lightbox-trigger">
     <img src="assets/reviews/review2.png" alt="review" loading="lazy">
-    <img src="assets/reviews/review5.png" alt="review" loading="lazy">
-  </div>
-  <div class="review-col">
+  </a>
+    <a href="assets/reviews/review3.png" class="lightbox-trigger">
     <img src="assets/reviews/review3.png" alt="review" loading="lazy">
-    <img src="assets/reviews/review6.jpg" alt="review" loading="lazy">
-  </div>
+  </a>
+    <a href="assets/reviews/review4.jpg" class="lightbox-trigger">
+    <img src="assets/reviews/review4.jpg" alt="review" loading="lazy">
+  </a>
+    <a href="assets/reviews/review5.png" class="lightbox-trigger">
+    <img src="assets/reviews/review5.png" alt="review" loading="lazy">
+  </a> 
 </div>
+
+<!-- lightbox overlay -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
     <!-- <div class="review-grid">
       <img src="assets/reviews/review1.png" alt="review" loading="lazy">
       <img src="assets/reviews/review2.png" alt="review" loading="lazy">
@@ -113,6 +119,13 @@
   </div>
 </section>
 
+
+
+<!-- chat fancy blogspot update -->
+<div class="container">
+<latest-posts label="travel"></latest-posts>
+</div>
+                
 
 <site-whatsapp></site-whatsapp>
 

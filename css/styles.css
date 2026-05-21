@@ -11440,8 +11440,98 @@ body{
   margin-bottom: 0;
 }
 
-/* 리뷰 스크린샷 - 강제지정grid */
+/* 리뷰 스크린샷 가로로 한줄 */
 .review-grid {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;  /* 높이 다른 이미지 위쪽 정렬 */
+  gap: 16px;
+  padding: 2rem;
+  margin-top: 48px;
+  margin-bottom: 64px;
+  overflow-x: auto;  /* 이미지 많으면 가로 스크롤 */
+}
+
+.review-grid img {
+  height: 320px;        /* 고정 높이 */
+  width: auto;          /* 비율 유지 */
+  flex-shrink: 0;
+  border-radius: 8px;
+  display: block;
+}
+@media (max-width: 768px) {
+  .review-grid {
+    flex-wrap: wrap;     /* 줄바꿈 허용 */
+    overflow-x: visible;
+  }
+  .review-grid img {
+    height: 200px;
+    flex-shrink: 1;
+  }
+}
+
+/* 이미지 hover 커서 */
+.review-grid a {
+  cursor: zoom-in;
+  flex-shrink: 0;
+}
+
+.review-grid a img {
+  height: 320px;
+  width: auto;
+  border-radius: 8px;
+  display: block;
+  transition: opacity .2s;
+}
+
+.review-grid a:hover img {
+  opacity: .85;
+}
+
+/* lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.88);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 1;
+  opacity: .7;
+}
+
+.lightbox-close:hover {
+  opacity: 1;
+  background: none;
+  color: #fff;
+}
+
+/* 리뷰 스크린샷 - 강제지정grid */
+/* .review-grid {
   display: flex;
   gap: 40px;
   padding: 2rem;
@@ -11466,10 +11556,9 @@ body{
 @media (max-width: 768px) {
   .review-grid { gap: 20px; }
 }
-
 @media (max-width: 480px) {
   .review-grid { flex-direction: column; }
-}
+} */
 
 /* 리뷰 스크린샷 — 세로 길이 제각각이라 masonry로 처음짰던것,. 강제지정grid로 바꿈
 .review-grid {

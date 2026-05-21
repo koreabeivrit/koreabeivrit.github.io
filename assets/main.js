@@ -20,3 +20,30 @@ const observer = new IntersectionObserver(entries => {
 });
 
 els.forEach(el => observer.observe(el));
+
+
+// lightbox for images
+
+document.querySelectorAll('.lightbox-trigger').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const src = a.getAttribute('href');
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  });
+});
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.getElementById('lightbox-img').src = '';
+}
+
+// 배경 클릭으로 닫기
+document.getElementById('lightbox').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeLightbox();
+});
+
+// ESC 키로 닫기
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+});
