@@ -11440,14 +11440,45 @@ body{
   margin-bottom: 0;
 }
 
-/* 리뷰 스크린샷 — 세로 길이 제각각이라 masonry */
+/* 리뷰 스크린샷 - 강제지정grid */
+.review-grid {
+  display: flex;
+  gap: 40px;
+  padding: 2rem;
+  margin-top: 48px;
+  margin-bottom: 64px;
+  align-items: flex-start;
+}
+
+.review-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review-col img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .review-grid { gap: 20px; }
+}
+
+@media (max-width: 480px) {
+  .review-grid { flex-direction: column; }
+}
+
+/* 리뷰 스크린샷 — 세로 길이 제각각이라 masonry로 처음짰던것,. 강제지정grid로 바꿈
 .review-grid {
       padding: 2rem 2rem ; 
   columns: 3;
-  column-gap: 40px;
-  /* 16 */
+  column-gap: 40px; 
   margin-top: 48px;
   margin-bottom: 64px;
+  
 }
 
 .review-grid img {
@@ -11456,7 +11487,7 @@ body{
   margin-bottom: 16px;
   border-radius: 8px;
   break-inside: avoid;
-}
+} */
 
 /* 투어 사진 — 정사각형 크롭 균일 그리드 */
 .tour-grid {
@@ -11475,11 +11506,9 @@ body{
 }
 
 @media (max-width: 768px) {
-  .review-grid { columns: 2; }
   .tour-grid   { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 480px) {
-  .review-grid { columns: 1; }
   .tour-grid   { grid-template-columns: repeat(2, 1fr); }
 }
