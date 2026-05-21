@@ -54,7 +54,7 @@ const phone = this.getAttribute('phone') || '972547310116';
         .waf-header h2 {
           font-family: 'DM Serif Display', serif;
           font-size: 26px;
-          font-weight: 400;
+          font-weight: 700;
           color: #1a1612;
           margin: 0 0 8px;
         }

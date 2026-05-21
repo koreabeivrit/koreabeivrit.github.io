@@ -68,7 +68,7 @@ class SiteFaq extends HTMLElement {
 
         .faq-section{
           background:#f7f3ee;
-          padding:90px 24px;
+          // padding:90px 24px;
           direction:rtl;
           font-family:'DM Sans',sans-serif;
         }
@@ -79,9 +79,12 @@ class SiteFaq extends HTMLElement {
         }
 
         .faq-header h2{
-          font-family:'DM Serif Display',serif;
-          font-size:44px;
-          font-weight:400;
+         font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+  line-height: 1.2;
+          // font-family:'DM Serif Display',serif;
+          font-size:32px;
+          // font-weight:400;
           color:#1a1612;
           margin:0 0 14px;
         }
@@ -94,7 +97,8 @@ class SiteFaq extends HTMLElement {
 
         .faq-topic{
           max-width:900px;
-          margin:0 auto 52px;
+          margin:0 auto 0;
+                    // margin:0 auto 52px;
         }
 
         .faq-topic-title{

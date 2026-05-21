@@ -36,7 +36,7 @@ class LatestPosts extends HTMLElement {
   font-size: 1.5rem;
   // 28px;
 
-  font-weight:600; /*400->600*/
+  font-weight:700; /*400*/
   color:#1a1612;
 
   padding-inline: 20px;
