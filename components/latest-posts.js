@@ -312,14 +312,25 @@ class LatestPosts extends HTMLElement {
             ? plain.slice(0,115).trim() + '…'
             : plain;
 
-        const imgMatch =
-          content.match(
-            /<img[^>]+src=["']([^"']+)["']/
-          );
+        // const imgMatch =
+        //   content.match(
+        //     /<img[^>]+src=["']([^"']+)["']/
+        //   );
 
-        const thumb = imgMatch
-          ? imgMatch[1].replace(/s\d+(-c)?/, 's1600')
-          : 'https://placehold.co/800x500/f5f0e8/9b8c78?text=No+Image';
+        // const thumb = imgMatch
+        //   ? imgMatch[1].replace(/s\d+(-c)?/, 's1600')
+        //   : 'https://placehold.co/800x500/f5f0e8/9b8c78?text=No+Image';
+
+        const thumb = (() => { // 우선순위: media$thumbnail > content 내 img > enclosure > placeholder. thumbnail안되어 claude가 수정함. png도 이제 가능
+  if (post.media$thumbnail?.url) {
+    return post.media$thumbnail.url.replace(/s\d+(-c)?/, 's1600');
+  }
+  const imgMatch = content.match(/<img[^>]+src=["']([^"']+)["']/);
+  if (imgMatch) return imgMatch[1].replace(/s\d+(-c)?/, 's1600');
+  const enclosure = post.link?.find(l => l.rel === 'enclosure');
+  if (enclosure?.href) return enclosure.href;
+  return 'https://placehold.co/800x500/f5f0e8/9b8c78?text=No+Image';
+})();
 
         const card =
           document.createElement('article');
