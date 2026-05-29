@@ -90,7 +90,7 @@
       };
 
       var script    = document.createElement('script');
-script.src = 'https://koreabeivrit.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=1&q=' + encodeURIComponent(url.split('?')[0]) + '&orderby=published&callback=' + cbName;
+script.src = 'https://koreabeivrit.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=1&by-url=' + encodeURIComponent(url.split('?')[0]) + '&callback=' + cbName;
       script.onerror = function () {
         console.error('link-card: 로드 실패', script.src);
         delete window[cbName];
