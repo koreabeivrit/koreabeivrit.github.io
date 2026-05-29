@@ -60,18 +60,6 @@
   display: block;
 }
 
-/* 토글 버튼 숨기기 */
-/* 
-.widget.Label .widget-content {
-  display: block !important;
-}
-
-.widget.Label .title {
-  pointer-events: none;
-}
-.widget.Label .title .toggle-arrow {
-  display: none !important;
-} */
 
 /* Link Card 스타일. 소스는 js/bloglinkcard.js 참고 */
 .bp-lc-url {
@@ -178,17 +166,6 @@ summary {
   align-items: center;
   flex-direction: row-reverse;
 }
-/* 
-summary::after {
-  content: '﹀';
-  font-size: 14px;
-  color: #9b8c78;
-  transition: transform .25s;
-}
-
-details[open] summary::after {
-  transform: rotate(180deg);
-} */
 
 details[open] {
   background: #fff;
@@ -271,13 +248,13 @@ details p {
     /*  1.7rem -> */
   } 
   
-  @media (max-width: 800px) {
+  /* @media (max-width: 800px) { */
   #page_body .FeaturedPost,
   .Blog .blog-posts .post-outer-container {
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
-}
+
 }
 
 

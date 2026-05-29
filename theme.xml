@@ -4491,199 +4491,9 @@ margin-left:40px
       <div class='navigation'>
         <b:include data='{ button: true, iconClass: &quot;flat-icon-button ripple sidebar-back&quot; }' name='backArrowIcon'/>
       </div>
-      <div class='sidebar_top_wrapper'>
-        <b:class cond='data:widgets none w =&gt; w.sectionId == &quot;sidebar_top&quot;' name='no-items'/>
+      
+<!-- 'sidebar_top_wrapper' 날림 -->
 
-        <b:section class='sidebar_top' id='sidebar_top' name='Sidebar (Top)'>
-          <b:widget id='Label2' locked='false' title='תוויות' type='Label' visible='true'>
-            <b:widget-settings>
-              <b:widget-setting name='sorting'>FREQUENCY</b:widget-setting>
-              <b:widget-setting name='display'>CLOUD</b:widget-setting>
-              <b:widget-setting name='selectedLabelsList'/>
-              <b:widget-setting name='showType'>ALL</b:widget-setting>
-              <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
-            </b:widget-settings>
-            <b:includable id='main' var='this'>
-          <details class='collapsible extendable' open='open' >
-            <!-- <b:attr cond='data:view.isLabelSearch' name='open' value='open'/> -->
-            <b:with value='true' var='renderAsDetails'>
-            <b:with value='data:messages.labels' var='defaultTitle'>
-              <b:include name='super.main'/>
-            </b:with>
-            </b:with>
-          </details>
-        </b:includable>
-            <b:includable id='cloud'>
-          <b:include data='{                               buttonClass: &quot;pill-button&quot;,                               items: data:this.labels,                               itemSet: &quot;labels&quot;,                               itemsMarkup: &quot;super.cloud&quot;                             }' name='extendableItems'/>
-        </b:includable>
-            <b:includable id='content'>
-  <div class='widget-content'>
-    <b:class expr:name='data:this.display + &quot;-label-widget-content&quot;'/>
-    <b:include cond='data:this.display == &quot;list&quot;' name='list'/>
-    <b:include cond='data:this.display == &quot;cloud&quot;' name='cloud'/>
-  </div>
-</b:includable>
-            <b:includable id='list'>
-          <b:include data='{                               buttonClass: &quot;pill-button&quot;,                               items: data:this.labels,                               itemSet: &quot;labels&quot;,                               itemsMarkup: &quot;super.list&quot;                             }' name='extendableItems'/>
-        </b:includable>
-          </b:widget>
-          <b:widget id='PageList2' locked='false' title='' type='PageList' visible='false'>
-            <b:widget-settings>
-              <b:widget-setting name='pageListJson'><![CDATA[{"2186406083973242033":{"href":"https://koreabeivrit.blogspot.com/p/blog-page.html","position":1,"title":"טיולים"},"link0":{"href":"http://koreabeivrit.blogspot.com/","position":0,"title":"דף הבית"},"7941896683045878375":{"href":"https://koreabeivrit.blogspot.com/p/blog-page_86.html","position":2,"title":"טיפולי יופי וניתוחים פלסטיים"}}]]></b:widget-setting>
-              <b:widget-setting name='homeTitle'>דף הבית</b:widget-setting>
-            </b:widget-settings>
-            <b:includable id='main'>
-  <b:include name='widget-title'/>
-  <b:include name='content'/>
-</b:includable>
-            <b:includable id='content'>
-          <div class='widget-content'>
-            <b:include cond='data:widget.sectionId == &quot;page_list_top&quot;' name='overflowablePageList'/>
-            <b:include cond='data:widget.sectionId != &quot;page_list_top&quot;' name='pageList'/>
-          </div>
-        </b:includable>
-            <b:includable id='overflowButton'>
-          <a><data:messages.moreEllipsis/></a>
-        </b:includable>
-            <b:includable id='overflowablePageList'>
-  <div class='overflowable-container'>
-    <div class='overflowable-contents'>
-      <div class='container'>
-        <b:with value='true' var='overflow'>
-        <b:with value='&quot;tabs&quot;' var='pageListClass'>
-          <b:include name='pageList'/>
-        </b:with>
-        </b:with>
-      </div>
-    </div>
-    <div class='overflow-button hidden'>
-      <b:include name='overflowButton'/>
-    </div>
-  </div>
-</b:includable>
-            <b:includable id='pageLink'>
-  <li>
-    <b:class cond='data:overflow' name='overflowable-item'/>
-    <b:class cond='data:link.isCurrentPage' name='selected'/>
-
-    <a expr:href='data:link.href'><data:link.title/></a>
-  </li>
-</b:includable>
-            <b:includable id='pageList'>
-  <ul>
-    <b:class cond='data:pageListClass' expr:name='data:pageListClass'/>
-    <b:loop values='data:links' var='link'>
-      <b:include name='pageLink'/>
-    </b:loop>
-  </ul>
-</b:includable>
-          </b:widget>
-          <b:widget id='Profile1' locked='true' title='פרטים עלי' type='Profile' visible='false'>
-            <b:widget-settings>
-              <b:widget-setting name='showaboutme'>true</b:widget-setting>
-              <b:widget-setting name='showlocation'>false</b:widget-setting>
-            </b:widget-settings>
-            <b:includable id='main' var='this'>
-          <div class='wrapper'>
-            <b:class cond='!data:this.team' name='solo'/>
-            <b:comment>No title for single profiles. Default to &#39;Blog authors&#39; for team.</b:comment>
-            <b:with value='data:messages.blogAuthors' var='defaultTitle'>
-              <b:include cond='data:this.team' name='widget-title'/>
-            </b:with>
-            <b:include name='content'/>
-          </div>
-        </b:includable>
-            <b:includable id='authorProfileImage'>
-  <img class='profile-img' expr:alt='data:messages.myPhoto' expr:height='data:authorPhoto.height' expr:src='data:authorPhoto.image' expr:width='data:authorPhoto.width'/>
-</b:includable>
-            <b:includable id='content'>
-  <b:if cond='data:team'>
-    <div class='widget-content team'>
-      <b:include name='teamProfile'/>
-    </div>
-  <b:else/>
-    <div class='widget-content individual'>
-      <b:include name='userProfile'/>
-    </div>
-  </b:if>
-</b:includable>
-            <b:includable id='defaultProfileImage'>
-          <div class='default-avatar-wrapper'>
-            <b:include data='{ iconClass: &quot;avatar-icon&quot; }' name='defaultAvatarIcon'/>
-          </div>
-        </b:includable>
-            <b:includable id='profileImage'>
-  <b:if cond='data:authorPhoto.image'>
-    <b:include name='authorProfileImage'/>
-  <b:else/>
-    <b:include name='defaultProfileImage'/>
-  </b:if>
-</b:includable>
-            <b:includable id='teamProfile'>
-  <ul>
-    <b:loop values='data:authors' var='author'>
-      <li>
-        <div class='team-member'>
-          <b:include data='author' name='teamProfileLink'/>
-        </div>
-      </li>
-    </b:loop>
-  </ul>
-</b:includable>
-            <b:includable id='teamProfileLink'>
-  <a class='profile-link g-profile' expr:href='data:userUrl' rel='nofollow'>
-    <b:include name='profileImage'/>
-    <span class='profile-name'><data:display-name/></span>
-  </a>
-</b:includable>
-            <b:includable id='userLocation'>
-  <dd class='profile-data location'><data:location/></dd>
-</b:includable>
-            <b:includable id='userProfile'>
-  <b:include name='userProfileImage'/>
-  <b:include name='userProfileInfo'/>
-</b:includable>
-            <b:includable id='userProfileData'>
-  <dt class='profile-data'>
-    <a class='profile-link g-profile' expr:href='data:userUrl' rel='author nofollow'>
-      <data:displayname/>
-    </a>
-  </dt>
-</b:includable>
-            <b:includable id='userProfileImage'>
-  <a expr:href='data:userUrl' rel='nofollow'>
-    <b:include name='profileImage'/>
-  </a>
-</b:includable>
-            <b:includable id='userProfileInfo'>
-  <div class='profile-info'>
-    <dl class='profile-datablock'>
-      <b:class cond='data:showlocation and data:location != &quot;&quot;' name='has-location'/>
-
-      <b:include name='userProfileData'/>
-      <b:include cond='data:showlocation and data:location != &quot;&quot;' name='userLocation'/>
-      <b:include cond='data:aboutme != &quot;&quot;' name='userProfileText'/>
-    </dl>
-    <b:include name='viewProfileLink'/>
-  </div>
-</b:includable>
-            <b:includable id='userProfileText'>
-          <dd class='profile-textblock profile-snippet snippet-container r-snippet-container'>
-            <div class='snippet-item r-snippetized'>
-              <data:aboutme/>
-            </div>
-            <div class='snippet-fade r-snippet-fade hidden'/>
-          </dd>
-        </b:includable>
-            <b:includable id='viewProfileLink'>
-          <b:comment>Change link to &#39;visit profile&#39;</b:comment>
-          <a class='profile-link visit-profile pill-button' expr:href='data:userUrl' rel='author'>
-            <data:messages.visitProfile/>
-          </a>
-        </b:includable>
-          </b:widget>
-        </b:section>
-      </div>
       <b:section class='sidebar_bottom' id='sidebar_bottom' name='Sidebar (Bottom)' preferred='yes'>
         <b:widget id='HTML2' locked='false' title='w' type='HTML' visible='false'>
           <b:widget-settings>
@@ -4834,6 +4644,40 @@ margin-left:40px
   </div>
 </b:includable>
         </b:widget>
+
+     <b:widget id='Label1' locked='false' title='תוויות' type='Label' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
+            <b:widget-setting name='display'>LIST</b:widget-setting>
+            <b:widget-setting name='selectedLabelsList'/>
+            <b:widget-setting name='showType'>ALL</b:widget-setting>
+            <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main' var='this'>
+          <details class='collapsible extendable' open='open' >
+            <!-- <b:attr cond='data:view.isLabelSearch' name='open' value='open'/> -->
+            <b:with value='true' var='renderAsDetails'>
+            <b:with value='data:messages.labels' var='defaultTitle'>
+              <b:include name='super.main'/>
+            </b:with>
+            </b:with>
+          </details>
+        </b:includable>
+          <b:includable id='cloud'>
+          <b:include data='{                               buttonClass: &quot;pill-button&quot;,                               items: data:this.labels,                               itemSet: &quot;labels&quot;,                               itemsMarkup: &quot;super.cloud&quot;                             }' name='extendableItems'/>
+        </b:includable>
+          <b:includable id='content'>
+  <div class='widget-content'>
+    <b:class expr:name='data:this.display + &quot;-label-widget-content&quot;'/>
+    <b:include cond='data:this.display == &quot;list&quot;' name='list'/>
+    <b:include cond='data:this.display == &quot;cloud&quot;' name='cloud'/>
+  </div>
+</b:includable>
+          <b:includable id='list'>
+          <b:include data='{                               buttonClass: &quot;pill-button&quot;,                               items: data:this.labels,                               itemSet: &quot;labels&quot;,                               itemsMarkup: &quot;super.list&quot;                             }' name='extendableItems'/>
+        </b:includable>
+        </b:widget>
+
         <b:widget id='BlogArchive1' locked='false' title='' type='BlogArchive' visible='true'>
           <b:widget-settings>
             <b:widget-setting name='showStyle'>FLAT</b:widget-setting>
@@ -4900,38 +4744,7 @@ margin-left:40px
   </ul>
 </b:includable>
         </b:widget>
-        <b:widget id='Label1' locked='false' title='תוויות' type='Label' visible='true'>
-          <b:widget-settings>
-            <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
-            <b:widget-setting name='display'>LIST</b:widget-setting>
-            <b:widget-setting name='selectedLabelsList'/>
-            <b:widget-setting name='showType'>ALL</b:widget-setting>
-            <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
-          </b:widget-settings>
-          <b:includable id='main' var='this'>
-          <details class='collapsible extendable' open='open' >
-            <!-- <b:attr cond='data:view.isLabelSearch' name='open' value='open'/> -->
-            <b:with value='true' var='renderAsDetails'>
-            <b:with value='data:messages.labels' var='defaultTitle'>
-              <b:include name='super.main'/>
-            </b:with>
-            </b:with>
-          </details>
-        </b:includable>
-          <b:includable id='cloud'>
-          <b:include data='{                               buttonClass: &quot;pill-button&quot;,                               items: data:this.labels,                               itemSet: &quot;labels&quot;,                               itemsMarkup: &quot;super.cloud&quot;                             }' name='extendableItems'/>
-        </b:includable>
-          <b:includable id='content'>
-  <div class='widget-content'>
-    <b:class expr:name='data:this.display + &quot;-label-widget-content&quot;'/>
-    <b:include cond='data:this.display == &quot;list&quot;' name='list'/>
-    <b:include cond='data:this.display == &quot;cloud&quot;' name='cloud'/>
-  </div>
-</b:includable>
-          <b:includable id='list'>
-          <b:include data='{                               buttonClass: &quot;pill-button&quot;,                               items: data:this.labels,                               itemSet: &quot;labels&quot;,                               itemsMarkup: &quot;super.list&quot;                             }' name='extendableItems'/>
-        </b:includable>
-        </b:widget>
+   
         <b:widget id='ReportAbuse1' locked='true' title='' type='ReportAbuse' visible='true'>
           <b:includable id='main'>
   <b:include name='reportAbuse'/>
