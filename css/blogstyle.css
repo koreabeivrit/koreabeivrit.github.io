@@ -60,18 +60,18 @@
   display: block;
 }
 
-
-
+/* 토글 버튼 숨기기 */
+/* 
 .widget.Label .widget-content {
   display: block !important;
 }
-/* 토글 버튼 숨기기 */
+
 .widget.Label .title {
   pointer-events: none;
 }
 .widget.Label .title .toggle-arrow {
   display: none !important;
-}
+} */
 
 /* Link Card 스타일. 소스는 js/bloglinkcard.js 참고 */
 .bp-lc-url {
@@ -178,7 +178,7 @@ summary {
   align-items: center;
   flex-direction: row-reverse;
 }
-
+/* 
 summary::after {
   content: '﹀';
   font-size: 14px;
@@ -188,7 +188,7 @@ summary::after {
 
 details[open] summary::after {
   transform: rotate(180deg);
-}
+} */
 
 details[open] {
   background: #fff;

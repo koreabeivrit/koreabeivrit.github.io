@@ -18,7 +18,8 @@
     
     <link href='https://koreabeivrit.github.io/css/blogstyle.css' rel='stylesheet'/> <!-- chat -->
    <script src='https://koreabeivrit.github.io/js/link-card.js'/>
-  
+   <script src='https://koreabeivrit.github.io/js/lightbox.js'/>
+
     <meta content='width=device-width, initial-scale=1' name='viewport'/>
     <title><data:view.title.escaped/></title>
     <b:include data='blog' name='all-head-content'/>
@@ -4503,8 +4504,8 @@ margin-left:40px
               <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
             </b:widget-settings>
             <b:includable id='main' var='this'>
-          <details class='collapsible extendable'>
-            <b:attr cond='data:view.isLabelSearch' name='open' value='open'/>
+          <details class='collapsible extendable' open='open' >
+            <!-- <b:attr cond='data:view.isLabelSearch' name='open' value='open'/> -->
             <b:with value='true' var='renderAsDetails'>
             <b:with value='data:messages.labels' var='defaultTitle'>
               <b:include name='super.main'/>
@@ -4908,8 +4909,8 @@ margin-left:40px
             <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
           </b:widget-settings>
           <b:includable id='main' var='this'>
-          <details class='collapsible extendable'>
-            <b:attr cond='data:view.isLabelSearch' name='open' value='open'/>
+          <details class='collapsible extendable' open='open' >
+            <!-- <b:attr cond='data:view.isLabelSearch' name='open' value='open'/> -->
             <b:with value='true' var='renderAsDetails'>
             <b:with value='data:messages.labels' var='defaultTitle'>
               <b:include name='super.main'/>
@@ -4941,5 +4942,6 @@ margin-left:40px
 
     <b:template-script async='true' name='indie' version='1.0.0'/>
     
+
   </body>
 </html>
