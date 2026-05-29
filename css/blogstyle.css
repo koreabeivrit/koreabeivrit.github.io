@@ -16,7 +16,7 @@
 .blog-post h2{
   margin-top:4rem;
   margin-bottom:1.5rem;
-  font-size:1.5rem;
+  font-size:1.4rem;
 }
 
 .blog-post p{
@@ -199,7 +199,8 @@
 /* 글제목은 h3 post-title.entry-title, theme.xml 모바일부분에 있음.  */
 
   .blog-post h2{
-    font-size:1.4rem;  /*  1.7rem -> */
+    font-size:1.4rem;  
+    /*  1.7rem -> */
   } 
   
 }

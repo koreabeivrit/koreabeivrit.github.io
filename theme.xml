@@ -131,11 +131,12 @@
       default="#212121"  value="#212121"/>
   <Variable name="posts.title.font" description="Post title font"
       type="font"
-      default="$(robotoBold22)"  value="bold 22px Roboto, sans-serif"/>
+      default="$(robotoBold22)"  value="bold 24px Roboto, sans-serif"/>
+      <!-- 본문 제목. 22px -->
   <Variable name="posts.stream.title.font" description="Post title stream font"
       type="font"
       default="$(robotoBold30)"  value="bold 24px Roboto, sans-serif"/>
-      <!-- 30px -->
+      <!-- 목록에서 30px -->
   <Variable name="posts.text.font" description="Post text font"
       type="font"
       default="$(body.text.font)"  value="15px Roboto, sans-serif"/>
