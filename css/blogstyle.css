@@ -60,9 +60,149 @@
   display: block;
 }
 
-  
-@media (max-width: 600px) {
-  .blog-image-wrap img {
-    height: 220px;
-  }
+
+
+.widget.Label .widget-content {
+  display: block !important;
 }
+/* 토글 버튼 숨기기 */
+.widget.Label .title {
+  pointer-events: none;
+}
+.widget.Label .title .toggle-arrow {
+  display: none !important;
+}
+
+/* Link Card 스타일. 소스는 js/bloglinkcard.js 참고 */
+.bp-lc-url {
+  font-size: 11px;
+  color: #9b8c78;
+  margin: 4px 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bp-link-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid #e8e2d8;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 20px 0;
+  text-decoration: none;
+  color: inherit;
+  background: #faf8f4;
+  transition: box-shadow .25s, transform .2s;
+      padding-right: 16px; /* 우측여백추가 */
+}
+.bp-link-card:hover {
+  box-shadow: 0 8px 28px rgba(0,0,0,.1);
+  transform: translateY(-2px);
+}
+.bp-lc-thumb {
+  flex-shrink: 0;
+  width: 120px;
+  height: 90px;
+  overflow: hidden;
+  background: #f0ede8;
+      border-radius: 6px; 
+      margin: 12px 0 12px 12px;
+}
+.bp-lc-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s;
+}
+.bp-link-card:hover .bp-lc-thumb img { transform: scale(1.06); }
+.bp-lc-body {
+  flex: 1;
+  padding: 14px 8px;
+  min-width: 0;
+}
+.bp-lc-date {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #9b8c78;
+  display: block;
+  margin-bottom: 6px;
+}
+.bp-lc-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1612;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bp-lc-excerpt {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.6;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.bp-lc-arrow {
+  padding: 0 16px;
+  font-size: 18px;
+  color: #c8622a;
+  flex-shrink: 0;
+}
+      
+@media (max-width: 540px) { /* 모바일 대응 */
+  .bp-link-card {
+    align-items: flex-start;
+    padding-right: 12px;
+  }
+  .bp-lc-thumb {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    margin: 10px 0 10px 10px;
+    border-radius: 6px;
+  }
+  .bp-lc-body {
+    padding: 10px 6px;
+  }
+  .bp-lc-title {
+    font-size: 13px;
+    white-space: normal;      /* 모바일에서 줄바꿈 허용 */
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .bp-lc-excerpt {
+    display: none;            /* 모바일에서 요약 숨기기 */
+  }
+  .bp-lc-arrow {
+    display: none;
+  }
+
+
+  
+  .blog-image-wrap img {
+    height: 150px;  /*  220px -> */
+  }
+    
+
+
+/* 글제목은 h3 post-title.entry-title, theme.xml 모바일부분에 있음.  */
+
+  .blog-post h2{
+    font-size:1.3rem;  /*  1.7rem -> */
+  } 
+  
+}
+
+
+
