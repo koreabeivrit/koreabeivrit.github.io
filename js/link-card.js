@@ -25,6 +25,7 @@
       console.log('link-card: 처리 중', slug);
 
       window[cbName] = function (data) {
+        
         console.log('link-card: feed 응답', data);
 
         var entry = data.feed && data.feed.entry && data.feed.entry[0];
@@ -35,6 +36,11 @@
 
         var title   = entry.title.$t;
         var postUrl = entry.link.filter(function (l) { return l.rel === 'alternate'; })[0].href;
+          // ✅ 원래 클릭한 URL과 다르면 무시
+  if (postUrl.split('?')[0] !== url.split('?')[0]) {
+    console.warn('link-card: URL 불일치 — 스킵', postUrl, '!=', url);
+    return;
+  }
         var content = (entry.content && entry.content.$t) || (entry.summary && entry.summary.$t) || '';
 
         function stripHtml(html) {
