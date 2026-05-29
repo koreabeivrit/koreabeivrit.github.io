@@ -2,6 +2,8 @@
 
 (function () {
   function init() {
+    // post 본문 페이지가 아니면 종료
+    if (!document.body.classList.contains('item-view')) return;
     var links = Array.from(
       document.querySelectorAll(
         '.post-body a[href*="koreabeivrit.blogspot.com"]'
@@ -98,3 +100,6 @@
     init();
   }
 })();
+
+
+
