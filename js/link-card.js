@@ -8,6 +8,7 @@
       if (a.closest('.bp-link-card')) return false;
       if (a.querySelector('img')) return false;
       if (a.closest('h1,h2,h3,h4')) return false;
+        if (a.href.includes('/search/label/')) return false; 
       return true;
     });
 
