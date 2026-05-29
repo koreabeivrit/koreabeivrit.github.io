@@ -16,7 +16,7 @@
 .blog-post h2{
   margin-top:4rem;
   margin-bottom:1.5rem;
-  font-size:1.7rem;
+  font-size:1.5rem;
 }
 
 .blog-post p{
@@ -189,17 +189,17 @@
   }
 
 
-  
-  .blog-image-wrap img {
-    height: 150px;  /*  220px -> */
+  .blog-image-wrap img { 
+    /* 16:9 비율로 고정. 모바일에서 이미지가 너무 커지는 문제 해결. */
+    height: auto !important;
+    aspect-ratio: 16 / 9;
   }
-    
 
 
 /* 글제목은 h3 post-title.entry-title, theme.xml 모바일부분에 있음.  */
 
   .blog-post h2{
-    font-size:1.3rem;  /*  1.7rem -> */
+    font-size:1.4rem;  /*  1.7rem -> */
   } 
   
 }
