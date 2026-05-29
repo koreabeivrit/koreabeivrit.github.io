@@ -157,8 +157,11 @@
   color: #c8622a;
   flex-shrink: 0;
 }
+
       
-@media (max-width: 540px) { /* 모바일 대응 */
+/* 모바일 대응 */
+
+@media (max-width: 540px) { 
   .bp-link-card {
     align-items: flex-start;
     padding-right: 12px;
@@ -196,13 +199,20 @@
   }
 
 
-/* 글제목은 h3 post-title.entry-title, theme.xml 모바일부분에 있음.  */
+  /* 글제목은 h3 post-title.entry-title, theme.xml 모바일부분에 있음.  */
 
   .blog-post h2{
     font-size:1.4rem;  
     /*  1.7rem -> */
   } 
   
+  @media (max-width: 800px) {
+  #page_body .FeaturedPost,
+  .Blog .blog-posts .post-outer-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
 }
 
 
