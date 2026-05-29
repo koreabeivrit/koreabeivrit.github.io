@@ -68,7 +68,7 @@ class SiteFaq extends HTMLElement {
 
         .faq-section{
           background:#f7f3ee;
-          // padding:90px 24px;
+          padding:0 24px;
           direction:rtl;
           font-family:'DM Sans',sans-serif;
         }
@@ -103,7 +103,7 @@ class SiteFaq extends HTMLElement {
 
         .faq-topic-title{
           font-family:'DM Serif Display',serif;
-          font-size:28px;
+          font-size:24px;
           font-weight:400;
           color:#1a1612;
           margin:0 0 24px;
