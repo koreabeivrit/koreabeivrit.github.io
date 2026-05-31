@@ -4495,7 +4495,140 @@ margin-left:40px
 <!-- 'sidebar_top_wrapper' 날림 -->
 
       <b:section class='sidebar_bottom' id='sidebar_bottom' name='Sidebar (Bottom)' preferred='yes'>
-        <b:widget id='HTML2' locked='false' title='w' type='HTML' visible='false'>
+   
+
+     <b:widget id='Label1' locked='false' title='תוויות' type='Label' visible='false'>
+          <b:widget-settings>
+            <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
+            <b:widget-setting name='display'>LIST</b:widget-setting>
+            <b:widget-setting name='selectedLabelsList'/>
+            <b:widget-setting name='showType'>ALL</b:widget-setting>
+            <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main' var='this'>
+          <details class='collapsible extendable' open='open' >
+            <!-- <b:attr cond='data:view.isLabelSearch' name='open' value='open'/> -->
+            <b:with value='true' var='renderAsDetails'>
+            <b:with value='data:messages.labels' var='defaultTitle'>
+              <b:include name='super.main'/>
+            </b:with>
+            </b:with>
+          </details>
+        </b:includable>
+          <b:includable id='cloud'>
+          <b:include data='{                               buttonClass: &quot;pill-button&quot;,                               items: data:this.labels,                               itemSet: &quot;labels&quot;,                               itemsMarkup: &quot;super.cloud&quot;                             }' name='extendableItems'/>
+        </b:includable>
+          <b:includable id='content'>
+  <div class='widget-content'>
+    <b:class expr:name='data:this.display + &quot;-label-widget-content&quot;'/>
+    <b:include cond='data:this.display == &quot;list&quot;' name='list'/>
+    <b:include cond='data:this.display == &quot;cloud&quot;' name='cloud'/>
+  </div>
+</b:includable>
+          <b:includable id='list'>
+          <b:include data='{                               buttonClass: &quot;pill-button&quot;,                               items: data:this.labels,                               itemSet: &quot;labels&quot;,                               itemsMarkup: &quot;super.list&quot;                             }' name='extendableItems'/>
+        </b:includable>
+        </b:widget>
+
+<b:widget id='HTML3' locked='false' title='טיולים' type='HTML' visible='true'>
+  <b:widget-settings>
+    <b:widget-setting name='content'><![CDATA[
+<style>
+.custom-labels h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #212121;
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #ccc;
+}
+
+.custom-labels ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-labels li {
+  margin: 6px 0;
+}
+
+.custom-labels a {
+  display: inline-block;
+  background: #f7f7f7;
+  border: 1px solid #f7f7f7;
+  border-radius: 15px;
+  padding: 3px 10px;
+  font-size: 14px;
+  color: #000;
+  text-decoration: none;
+  transition: background .2s;
+}
+
+.custom-labels a:hover {
+  background: #e8e2d8;
+  border-color: #e8e2d8;
+}
+</style>
+
+<div class="custom-labels">
+  <!-- <h3>קטגוריות</h3> -->
+  <ul>
+    <li><a href="https://koreabeivrit.blogspot.com/search/label/%D7%98%D7%99%D7%95%D7%9C%D7%99%D7%9D">טיולים</a></li>
+    <li><a href="https://koreabeivrit.blogspot.com/search/label/%D7%90%D7%95%D7%9B%D7%9C">אוכל</a></li>
+    <!-- 원하는 순서대로 추가 -->
+  </ul>
+</div>
+    ]]></b:widget-setting>
+  </b:widget-settings>
+  <b:includable id='main'>
+    <b:include name='widget-title'/>
+    <div class='widget-content'>
+      <data:content/>
+    </div>
+  </b:includable>
+</b:widget>
+
+
+<b:widget id='HTML4' locked='false' title='טיפולי יופי וניתוחים פלסטיים' type='HTML' visible='true'>
+  <b:widget-settings>
+    <b:widget-setting name='content'><![CDATA[
+
+<div class="custom-labels">
+  <!-- <h3>קטגוריות</h3> -->
+  <ul>
+    <li><a href="https://koreabeivrit.blogspot.com/search/label/%D7%98%D7%99%D7%A4%D7%95%D7%9C%D7%99%20%D7%99%D7%95%D7%A4%D7%99%20%D7%95%D7%A0%D7%99%D7%AA%D7%95%D7%97%D7%99%D7%9D%20%D7%A4%D7%9C%D7%A1%D7%98%D7%99%D7%99%D7%9D">טיפולי יופי וניתוחים פלסטיים</a></li>
+    <li><a href="https://koreabeivrit.blogspot.com/search/label/%D7%9C%D7%99%D7%99%D7%96%D7%A8">לייזר</a></li>
+    
+    <li><a href="https://koreabeivrit.blogspot.com/search/label/%D7%9C%D7%99%D7%A4%D7%98%D7%99%D7%A0%D7%92">ליפטינג</a></li>
+    
+    <li><a href="https://koreabeivrit.blogspot.com/search/label/%D7%91%D7%95%D7%A1%D7%98%D7%A8">בוסטר</a></li>
+
+    
+    <li><a href="https://koreabeivrit.blogspot.com/search/label/%D7%94%D7%96%D7%A8%D7%A7%D7%95%D7%AA">הזרקות</a></li>
+
+    
+    <li><a href="https://koreabeivrit.blogspot.com/search/label/%D7%A9%D7%95%D7%9E%D7%9F">שומן</a></li>
+
+    <li><a href="https://koreabeivrit.blogspot.com/search/label/%D7%A4%D7%99%D7%92%D7%9E%D7%A0%D7%98%D7%A6%D7%99%D7%94">פיגמנטציה</a></li>
+
+    <li><a href="https://koreabeivrit.blogspot.com/search/label/%D7%A0%D7%99%D7%AA%D7%95%D7%97%D7%99%D7%9D%20%D7%A4%D7%9C%D7%A1%D7%98%D7%99%D7%99%D7%9D">ניתוחים פלסטיים</a></li>
+
+    <!-- 원하는 순서대로 추가 -->
+  </ul>
+</div>
+    ]]></b:widget-setting>
+  </b:widget-settings>
+  <b:includable id='main'>
+    <b:include name='widget-title'/>
+    <div class='widget-content'>
+      <data:content/>
+    </div>
+  </b:includable>
+</b:widget>
+
+
+     <b:widget id='HTML2' locked='false' title='w' type='HTML' visible='false'>
           <b:widget-settings>
             <b:widget-setting name='content'><![CDATA[<site-whatsapp>
       <style>
@@ -4643,42 +4776,9 @@ margin-left:40px
     <data:content/>
   </div>
 </b:includable>
-        </b:widget>
+</b:widget>
 
-     <b:widget id='Label1' locked='false' title='תוויות' type='Label' visible='true'>
-          <b:widget-settings>
-            <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
-            <b:widget-setting name='display'>LIST</b:widget-setting>
-            <b:widget-setting name='selectedLabelsList'/>
-            <b:widget-setting name='showType'>ALL</b:widget-setting>
-            <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
-          </b:widget-settings>
-          <b:includable id='main' var='this'>
-          <details class='collapsible extendable' open='open' >
-            <!-- <b:attr cond='data:view.isLabelSearch' name='open' value='open'/> -->
-            <b:with value='true' var='renderAsDetails'>
-            <b:with value='data:messages.labels' var='defaultTitle'>
-              <b:include name='super.main'/>
-            </b:with>
-            </b:with>
-          </details>
-        </b:includable>
-          <b:includable id='cloud'>
-          <b:include data='{                               buttonClass: &quot;pill-button&quot;,                               items: data:this.labels,                               itemSet: &quot;labels&quot;,                               itemsMarkup: &quot;super.cloud&quot;                             }' name='extendableItems'/>
-        </b:includable>
-          <b:includable id='content'>
-  <div class='widget-content'>
-    <b:class expr:name='data:this.display + &quot;-label-widget-content&quot;'/>
-    <b:include cond='data:this.display == &quot;list&quot;' name='list'/>
-    <b:include cond='data:this.display == &quot;cloud&quot;' name='cloud'/>
-  </div>
-</b:includable>
-          <b:includable id='list'>
-          <b:include data='{                               buttonClass: &quot;pill-button&quot;,                               items: data:this.labels,                               itemSet: &quot;labels&quot;,                               itemsMarkup: &quot;super.list&quot;                             }' name='extendableItems'/>
-        </b:includable>
-        </b:widget>
-
-        <b:widget id='BlogArchive1' locked='false' title='' type='BlogArchive' visible='true'>
+<b:widget id='BlogArchive1' locked='false' title='' type='BlogArchive' visible='false'>
           <b:widget-settings>
             <b:widget-setting name='showStyle'>FLAT</b:widget-setting>
             <b:widget-setting name='yearPattern'>yyyy</b:widget-setting>
