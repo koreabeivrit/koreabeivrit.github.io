@@ -20,6 +20,7 @@
    <script src='https://koreabeivrit.github.io/js/link-card.js'/>
    <script src='https://koreabeivrit.github.io/js/lightbox.js'/>
 
+
     <meta content='width=device-width, initial-scale=1' name='viewport'/>
     <title><data:view.title.escaped/></title>
     <b:include data='blog' name='all-head-content'/>
@@ -4855,6 +4856,8 @@ margin-left:40px
 
     <b:template-script async='true' name='indie' version='1.0.0'/>
     
+
+
 
   </body>
 </html>
